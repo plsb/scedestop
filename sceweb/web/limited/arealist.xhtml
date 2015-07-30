@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Áreas
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+
+
+
+                <h:commandLink action="#{barea.newArea}">
+                    <h:graphicImage library="pictures" name="insert.png"
+                                    style="border:0" title="Inserir Área" />
+                </h:commandLink>
+
+                <p:dataTable id="tbl" value="#{barea.list}" var="area"
+                             paginator="true" rows="10">
+
+                    <p:column id="description"   
+                              headerText="Descrição" filterBy="#{area.description}">
+                        <f:facet name="header">Descrição</f:facet>
+                        <h:outputText
+                            value="#{area.description}" />
+                    </p:column>
+                    <p:column id="city" headerText="Cidade">
+                        <f:facet name="header">Cidade</f:facet>
+                        <h:outputText
+                            value="#{area.city.description} - #{area.city.state}" />
+                    </p:column>
+
+                    <p:column>
+
+                        <h:commandLink action="#{barea.edit}">
+                            <h:graphicImage library="pictures" name="edit.png"
+                                            style="border:0" title="Editar �rea" />
+                            <f:setPropertyActionListener target="#{barea.area}"
+                                                         value="#{area}" />
+
+                        </h:commandLink>
+
+                    </p:column>
+                    <p:column>
+
+                        <h:commandLink action="#{barea.remove}"
+                                       onclick="if (!confirm('Confirma a exclusão de Área ?'))
+                                                   return false;"
+                                       title="Excluir Área">
+                            <h:graphicImage library="pictures" name="remove.png"
+                                            style="border:0" />
+                            <f:setPropertyActionListener target="#{barea.area}"
+                                                         value="#{area}" />
+                        </h:commandLink>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

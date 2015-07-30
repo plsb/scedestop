@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Ciclo
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+
+
+
+                <h:commandLink action="#{bcycle.newCycle}">
+                    <h:graphicImage library="pictures" name="insert.png"
+                                    style="border:0" title="Inserir Área" />
+                </h:commandLink>
+
+                <p:dataTable id="tbl" value="#{bcycle.list}" var="cycle"
+                             paginator="true" rows="10">
+
+                    <p:column id="description"
+                              headerText="Descrição" filterBy="#{cycle.description}">
+                        <f:facet name="header">Descrição</f:facet>
+                        <h:outputText
+                            value="#{cycle.description}" />
+                    </p:column>
+                    <p:column id="startdate" headerText="Data Inicio">
+                              <f:facet name="header">Data Inicio</f:facet>
+                        <h:outputText
+                            value="#{cycle.startDate}" />
+                    </p:column>
+                    <p:column id="enddate" headerText="Data Fim">
+                              <f:facet name="header">Data Fim</f:facet>
+                        <h:outputText
+                            value="#{cycle.endDate}" />
+                    </p:column>
+                    <p:column id="city" headerText="Cidade">
+                        <f:facet name="header">Cidade</f:facet>
+                        <h:outputText
+                            value="#{cycle.city.description} - #{cycle.city.state}" />
+                    </p:column>
+
+                    <p:column>
+
+                        <h:commandLink action="#{bcycle.edit}">
+                            <h:graphicImage library="pictures" name="edit.png"
+                                            style="border:0" title="Editar �rea" />
+                            <f:setPropertyActionListener target="#{bcycle.cycle}"
+                                                         value="#{cycle}" />
+
+                        </h:commandLink>
+
+                    </p:column>
+                    <p:column>
+
+                        <h:commandLink action="#{bcycle.remove}"
+                                       onclick="if (!confirm('Confirma a exclusão do Ciclo ?'))
+                                                   return false;"
+                                       title="Excluir Ciclo">
+                            <h:graphicImage library="pictures" name="remove.png"
+                                            style="border:0" />
+                            <f:setPropertyActionListener target="#{bcycle.cycle}"
+                                                         value="#{cycle}" />
+                        </h:commandLink>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

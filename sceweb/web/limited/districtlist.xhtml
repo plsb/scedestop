@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Bairros
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+
+
+
+                <h:commandLink action="#{bdistrict.newDistrict}">
+                    <h:graphicImage library="pictures" name="insert.png"
+                                    style="border:0" title="Inserir Área" />
+                </h:commandLink>
+
+                <p:dataTable id="tbl" value="#{bdistrict.list}" var="district"
+                             paginator="true" rows="10">
+
+                    <p:column  
+                        headerText="Código"  
+                        filterMatchMode="contains">
+                        <f:facet name="header">Código</f:facet>
+                        <h:outputText value="#{district.districtId}" />
+                    </p:column>
+                    <p:column id="description"
+                              headerText="Descrição" filterBy="#{district.description}">
+                        <f:facet name="header">Descrição</f:facet>
+                        <h:outputText
+                            value="#{district.description}" />
+                    </p:column>
+                    <p:column id="area" headerText="Área" filterBy="#{district.area.description}">
+                              <f:facet name="header">Area</f:facet>
+                        <h:outputText
+                            value="#{district.area.description}" />
+                    </p:column>
+                    <p:column id="zone" headerText="Zona" filterBy="#{district.zone}">
+                              <f:facet name="header">Zona</f:facet>
+                        <h:outputText
+                            value="#{district.zone}" />
+                    </p:column>
+                    <p:column id="city" headerText="Cidade">
+                        <f:facet name="header">Cidade</f:facet>
+                        <h:outputText
+                            value="#{district.city.description} - #{district.city.state}" />
+                    </p:column>
+
+                    <p:column>
+
+                        <h:commandLink action="#{bdistrict.edit}">
+                            <h:graphicImage library="pictures" name="edit.png"
+                                            style="border:0" title="Editar �rea" />
+                            <f:setPropertyActionListener target="#{bdistrict.district}"
+                                                         value="#{district}" />
+
+                        </h:commandLink>
+
+                    </p:column>
+                    <p:column>
+
+                        <h:commandLink action="#{bdistrict.remove}"
+                                       onclick="if (!confirm('Confirma a exclusão do Bairro ?'))
+                                                   return false;"
+                                       title="Excluir Bairro">
+                            <h:graphicImage library="pictures" name="remove.png"
+                                            style="border:0" />
+                            <f:setPropertyActionListener target="#{bdistrict.district}"
+                                                         value="#{district}" />
+                        </h:commandLink>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

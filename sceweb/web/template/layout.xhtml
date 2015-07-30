@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:head> 
+
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <title><ui:insert name="titulo">SCE</ui:insert></title> <!-- (2) -->
+        <h:outputStylesheet library="css" name="style.css"/>
+        <style type="text/css"><!--
+            #logo {
+                text-align: left; 
+                float: left;
+            } -->
+        </style>  
+
+    </h:head> 
+    <h:body> 
+        <div id="container">
+            <div id="title">
+                <ui:insert name="title">Sistema de Controle de Endemias</ui:insert>
+            </div>
+            <div id="logo">
+                <h:graphicImage library="pictures" name="scelittle.png"/> 
+            </div>
+            <div id="menu">
+                <ui:insert name="menu">
+                    <ui:include src="/limited/menu.xhtml"/>
+                </ui:insert>  
+            </div>
+            <div id="body">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <ui:insert name="body"/>
+            </div>
+            <div id="footer">
+                <ui:insert name="footer">
+                    <br /><br />
+                    <h:graphicImage library="pictures" name="footer.png"/> 
+                </ui:insert> 
+            </div>
+        </div>
+    </h:body>
+</html>
+

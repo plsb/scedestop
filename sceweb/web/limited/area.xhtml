@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Inserção/Edição de Áreas
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="register">
+
+                <h:inputHidden value="#{barea.area.id}"/>
+
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="Descrição da Área:" for="description" />
+                    <p:inputText id="description" label="Descrição" size="100"
+                                 maxlength="50" required="true" value="#{barea.area.description}"
+                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase">
+                    </p:inputText>				
+                                        
+                </h:panelGrid>
+                <br />
+                <p:commandButton action="#{barea.save}" value="Salvar" ajax="false"/>
+
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
