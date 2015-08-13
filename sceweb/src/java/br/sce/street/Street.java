@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.sce.quarter;
+package br.sce.street;
 
 import br.sce.city.City;
 import br.sce.district.District;
+import br.sce.district.DistrictDAO;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.faces.model.SelectItem;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +24,7 @@ import javax.persistence.ManyToOne;
  * @author Pedro Saraiva
  */
 @Entity
-public class Quarter implements Serializable{
+public class Street implements Serializable{
     
     @Id
     @GeneratedValue
@@ -97,7 +101,7 @@ public class Quarter implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Quarter other = (Quarter) obj;
+        final Street other = (Street) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -113,7 +117,6 @@ public class Quarter implements Serializable{
         return true;
     }
     private static final long serialVersionUID = -8605722466916892564L;
-    
     
             
     

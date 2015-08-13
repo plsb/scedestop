@@ -30,13 +30,13 @@
                     </p:inputText>				
                     <p:outputLabel for="startDate" value="Data Inicial:" />
                     <p:calendar id="startDate" showOn="button" value="#{bcycle.cycle.startDate}" required="true"
-                                requiredMessage="Informe a Data Inicial" pattern="yyyy-dd-MM"/>
+                                requiredMessage="Informe a Data Inicial" pattern="dd/MM/yyyy"/>
                     <p:outputLabel for="endDate" value="Data Final:" />
                     <p:calendar id="endDate" showOn="button" value="#{bcycle.cycle.endDate}" required="true" 
-                                requiredMessage="Informe a Data Final" pattern="yyyy-MM-dd"/>
+                                requiredMessage="Informe a Data Final" pattern="dd/MM/yyyy"/>
                 </h:panelGrid>
                 <br />
-                <p:commandButton action="#{barea.save}" value="Salvar" ajax="false"/>
+                <p:commandButton action="#{bcycle.save}" value="Salvar" ajax="false"/>
 
             </h:form>
 

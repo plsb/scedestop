@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Inserção/Edição de Ruas
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="register">
+
+                <h:inputHidden value="#{bstreet.street.id}"/>
+
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="Código do Quarteirão:" for="code" />
+                    <p:inputText id="code" label="Código" size="10"
+                                 maxlength="50" required="true" value="#{bstreet.street.idQuarter}"
+                                 requiredMessage="Informe o Código do Quarteirão." style="text-transform:uppercase">
+                    </p:inputText>				
+
+                    <p:outputLabel value="Descrição da Rua:" for="description" />
+                    <p:inputText id="description" label="Descrição" size="100"
+                                 maxlength="50" required="true" value="#{bstreet.street.description}"
+                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase">
+                    </p:inputText>	
+                    <p:outputLabel value="Bairro: " for="district"/>
+                    <p:selectOneMenu id="district" value="#{bstreet.street.district}" required="true" 
+                                     requiredMessage="Informe o Bairro.">
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bstreet.districtSelect}"/>					 			
+                    </p:selectOneMenu> 
+                    
+                </h:panelGrid>
+                <br />
+                <p:commandButton action="#{bstreet.save}" value="Salvar" ajax="false"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

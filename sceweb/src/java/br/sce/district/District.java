@@ -24,9 +24,9 @@ public class District implements Serializable{
     
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private int districtId;
     
     @ManyToOne
@@ -50,11 +50,11 @@ public class District implements Serializable{
     @Column(nullable = false, length = 1)
     private char zone;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

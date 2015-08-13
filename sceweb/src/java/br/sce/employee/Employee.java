@@ -59,7 +59,7 @@ public class Employee implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     
-    @Column(length = 10, nullable = false)
+    @Column(length = 15, nullable = false)
     private String phone;
     
     @Column(length = 10, nullable = false)

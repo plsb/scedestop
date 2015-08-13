@@ -46,18 +46,20 @@ public class DistrictBean {
     public String save() {
         district.setDescription(district.getDescription().toUpperCase());
         if(district.getDistrictId()==0){
-            context.addMessage(null, new FacesMessage("Código do Bairro Não Pode Ser 0", ""));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Código do Bairro Não Pode Ser 0", ""));
             return "";
         }
         if (district.getId() == 0) {
+            dDistrict.add(district);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + district.getDescription(), ""));
 
-            dDistrict.add(district);
+            
         } else {
+            dDistrict.update(district);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
                     + district.getDescription(), ""));
-            dDistrict.update(district);
+            
         }
 
         return "/faces/limited/districtlist.xhtml";

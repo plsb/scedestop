@@ -19,7 +19,7 @@
 
                 <h:commandLink action="#{bdistrict.newDistrict}">
                     <h:graphicImage library="pictures" name="insert.png"
-                                    style="border:0" title="Inserir Área" />
+                                    style="border:0" title="Inserir Bairro" />
                 </h:commandLink>
 
                 <p:dataTable id="tbl" value="#{bdistrict.list}" var="district"
@@ -57,7 +57,7 @@
 
                         <h:commandLink action="#{bdistrict.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
-                                            style="border:0" title="Editar �rea" />
+                                            style="border:0" title="Editar Bairro" />
                             <f:setPropertyActionListener target="#{bdistrict.district}"
                                                          value="#{district}" />
 

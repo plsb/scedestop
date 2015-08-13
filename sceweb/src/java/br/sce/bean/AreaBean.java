@@ -37,14 +37,16 @@ public class AreaBean {
     public String save() {
         area.setDescription(area.getDescription().toUpperCase());
         if (area.getId() == 0) {
+            dArea.add(area);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + area.getDescription(), ""));
             
-            dArea.add(area);
+            
         } else {
+            dArea.update(area);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
                     + area.getDescription(), ""));
-            dArea.update(area);
+            
         }
 
         return "/faces/limited/arealist.xhtml";

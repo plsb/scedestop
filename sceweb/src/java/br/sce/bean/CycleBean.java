@@ -50,14 +50,16 @@ public class CycleBean {
         cycle.setDescription(cycle.getDescription().toUpperCase());
         
         if (cycle.getId() == 0) {
+             dCycle.add(cycle);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + cycle.getDescription(), ""));
 
-            dCycle.add(cycle);
+           
         } else {
+            dCycle.update(cycle);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
                     + cycle.getDescription(), ""));
-            dCycle.update(cycle);
+            
         }
 
         return "/faces/limited/cyclelist.xhtml";

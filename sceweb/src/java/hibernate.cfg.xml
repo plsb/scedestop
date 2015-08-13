@@ -8,7 +8,7 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost/sce</property>
         <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.password">root</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="generate_statistics">true</property>
@@ -19,7 +19,7 @@
         <mapping class="br.sce.cycle.Cycle"/>
         <mapping class="br.sce.district.District"/>
         <mapping class="br.sce.employee.Employee"/>
-        <mapping class="br.sce.quarter.Quarter"/>
+        <mapping class="br.sce.street.Street"/>
         <mapping class="br.sce.team.Team"/>
         <mapping class="br.sce.teamitem.TeamItem"/>
         <mapping class="br.sce.user.User"/>

@@ -9,7 +9,7 @@
     <ui:composition template="/template/layout.xhtml">
 
         <ui:define name="title">
-            Ciclos
+            Ruas
         </ui:define>
 
         <ui:define name="body">
@@ -17,57 +17,59 @@
 
 
 
-                <h:commandLink action="#{bcycle.newCycle}">
+                <h:commandLink action="#{bstreet.newQuarter}">
                     <h:graphicImage library="pictures" name="insert.png"
-                                    style="border:0" title="Inserir Ciclo" />
+                                    style="border:0" title="Inserir Rua" />
                 </h:commandLink>
 
-                <p:dataTable id="tbl" value="#{bcycle.list}" var="cycle"
+                <p:dataTable id="tbl" value="#{bstreet.list}" var="street"
                              paginator="true" rows="10">
 
+                    <p:column  
+                        headerText="Código Quarteirão"  
+                        filterMatchMode="contains" filterBy="#{street.idQuarter}">
+                        <f:facet name="header">Código</f:facet>
+                        <h:outputText value="#{street.idQuarter}" />
+                    </p:column>
                     <p:column id="description"
-                              headerText="Descrição" filterBy="#{cycle.description}">
+                              headerText="Descrição" filterBy="#{street.description}">
                         <f:facet name="header">Descrição</f:facet>
                         <h:outputText
-                            value="#{cycle.description}" />
+                            value="#{street.description}" />
                     </p:column>
-                    <p:column id="startdate" headerText="Data Inicio">
-                              <f:facet name="header">Data Inicio</f:facet>
+                    <p:column id="district" headerText="Bairro" filterBy="#{street.district.description}">
+                              <f:facet name="header">Bairro</f:facet>
                         <h:outputText
-                            value="#{cycle.startDate}" />
+                            value="#{street.district.description}" />
                     </p:column>
-                    <p:column id="enddate" headerText="Data Fim">
-                              <f:facet name="header">Data Fim</f:facet>
-                        <h:outputText
-                            value="#{cycle.endDate}" />
-                    </p:column>
+                    
                     <p:column id="city" headerText="Cidade">
                         <f:facet name="header">Cidade</f:facet>
                         <h:outputText
-                            value="#{cycle.city.description} - #{cycle.city.state}" />
+                            value="#{street.city.description} - #{street.city.state}" />
                     </p:column>
 
                     <p:column>
 
-                        <h:commandLink action="#{bcycle.edit}">
+                        <h:commandLink action="#{bstreet.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
-                                            style="border:0" title="Editar Ciclo" />
-                            <f:setPropertyActionListener target="#{bcycle.cycle}"
-                                                         value="#{cycle}" />
+                                            style="border:0" title="Editar Rua" />
+                            <f:setPropertyActionListener target="#{bstreet.street}"
+                                                         value="#{street}" />
 
                         </h:commandLink>
 
                     </p:column>
                     <p:column>
 
-                        <h:commandLink action="#{bcycle.remove}"
-                                       onclick="if (!confirm('Confirma a exclusão do Ciclo ?'))
+                        <h:commandLink action="#{bstreet.remove}"
+                                       onclick="if (!confirm('Confirma a exclusão da Rua ?'))
                                                    return false;"
-                                       title="Excluir Ciclo">
+                                       title="Excluir Rua">
                             <h:graphicImage library="pictures" name="remove.png"
                                             style="border:0" />
-                            <f:setPropertyActionListener target="#{bcycle.cycle}"
-                                                         value="#{cycle}" />
+                            <f:setPropertyActionListener target="#{bstreet.street}"
+                                                         value="#{street}" />
                         </h:commandLink>
 
                     </p:column>

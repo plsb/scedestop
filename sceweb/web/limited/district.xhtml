@@ -21,12 +21,12 @@
             <h:form id="register">
 
                 <h:inputHidden value="#{bdistrict.district.id}"/>
-
+                
                 <h:panelGrid columns="1">
                     <p:outputLabel value="Código do Bairro:" for="code" />
                     <p:inputText id="code" label="Código" size="10"
                                  maxlength="50" required="true" value="#{bdistrict.district.districtId}"
-                                 requiredMessage="Informe o Código do Bairro." style="text-transform:uppercase">
+                                 requiredMessage="Informe o Código do Bairro.">
                     </p:inputText>				
 
                     <p:outputLabel value="Descrição do Bairro:" for="description" />
