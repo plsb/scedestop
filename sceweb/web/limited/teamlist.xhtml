@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Equipe
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+
+
+
+                <h:commandLink action="#{bteam.newTeam}">
+                    <h:graphicImage library="pictures" name="insert.png"
+                                    style="border:0" title="Inserir Time" />
+                </h:commandLink>
+
+                <p:dataTable id="tbl" value="#{bteam.list}" var="team"
+                             paginator="true" rows="10">
+
+                    <p:column id="master"
+                              headerText="Supervisor" filterBy="#{team.master.name}">
+                        <f:facet name="header">Supervisor</f:facet>
+                        <h:outputText
+                            value="#{team.master.name}" />
+                    </p:column>
+
+                    <p:column id="supervised"
+                              headerText="Supervisionado" filterBy="#{team.supervised.name}">
+                        <f:facet name="header">Supervisionado</f:facet>
+                        <h:outputText
+                            value="#{team.supervised.name}" />
+                    </p:column>
+
+
+                    <p:column id="city" headerText="Cidade">
+                        <f:facet name="header">Cidade</f:facet>
+                        <h:outputText
+                            value="#{team.city.description} - #{team.city.state}" />
+                    </p:column>
+
+                    <p:column>
+
+                        <h:commandLink action="#{bteam.edit}">
+                            <h:graphicImage library="pictures" name="edit.png"
+                                            style="border:0" title="Editar Time" />
+                            <f:setPropertyActionListener target="#{bteam.team}"
+                                                         value="#{team}" />
+
+                        </h:commandLink>
+
+                    </p:column>
+                    <p:column>
+
+                        <h:commandLink action="#{bteam.remove}"
+                                       onclick="if (!confirm('Confirma a exclusão do Time ?'))
+                                                   return false;"
+                                       title="Excluir Time">
+                            <h:graphicImage library="pictures" name="remove.png"
+                                            style="border:0" />
+                            <f:setPropertyActionListener target="#{bteam.team}"
+                                                         value="#{team}" />
+                        </h:commandLink>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

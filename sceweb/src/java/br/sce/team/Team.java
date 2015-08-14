@@ -30,6 +30,17 @@ public class Team implements Serializable{
     private Employee master;
     
     @ManyToOne
+    private Employee supervised;
+
+    public Employee getSupervised() {
+        return supervised;
+    }
+
+    public void setSupervised(Employee supervised) {
+        this.supervised = supervised;
+    }
+    
+    @ManyToOne
     private City city;
 
     public int getId() {
