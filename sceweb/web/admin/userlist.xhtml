@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Área Administrativa
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:messages />
+
+                <h:commandLink action="#{buser.newUser}">
+                    <h:graphicImage library="pictures" name="insert.png"
+                                    style="border:0" title="Inserir Usuário" />
+                </h:commandLink>
+
+                <p:dataTable id="tbl" value="#{buser.list}" var="user" paginator="true" rows="10">
+
+                    <!-- <f:facet name="footer">Final da listagem</f:facet>  -->
+                    <p:column>
+                        <h:commandLink action="#{buser.active}">
+                            <h:graphicImage library="imagens"
+                                            name="user_active_#{user.active}.png" style="border:0" />
+                            <f:setPropertyActionListener target="#{buser.user}"
+                                                         value="#{usuario}" />
+                        </h:commandLink>
+                    </p:column>
+                    <p:column filterBy="#{user.name}"   
+                              headerText="Nome"  
+                              filterMatchMode="contains">
+                        <f:facet name="header">Nome</f:facet>
+                        <h:outputText value="#{user.name}" />
+                    </p:column>
+                    <p:column filterBy="#{user.login}"   
+                              headerText="Login"  
+                              filterMatchMode="contains">
+                        <f:facet name="header">Login</f:facet>
+                        <h:outputText value="#{user.login}" />
+                    </p:column>
+                    <p:column filterBy="#{user.city}"   
+                              headerText="Cidade"  
+                              filterMatchMode="contains">
+                        <f:facet name="header">Cidade</f:facet>
+                        <h:outputText value="#{user.city}-#{user.city.state}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Permissões</f:facet>                        
+                            <h:commandLink
+                                action="#{buser.assignsPermission(user, 'ROLE_ADMIN')}"
+                                title="Permissão Administrador">
+                                <h:graphicImage library="imagens"
+                                                name="ROLE_ADMINISTRADOR_#{user.permission.contains('ROLE_ADMIN')}.png"
+                                                style="border:0" />
+                            </h:commandLink>
+
+                        <h:commandLink
+                            action="#{buser.assignsPermission(user, 'ROLE_USER')}"
+                            title="Permiss�o Usu�rio VIP">
+                            <h:graphicImage library="imagens"
+                                            name="role_user_#{usuario.permissao.contains('ROLE_USER')}.png"
+                                            style="border:0" />
+                        </h:commandLink>
+                        
+                    </p:column>
+                    <p:column>
+                            <h:commandLink action="#{user.edit}">
+                                <h:graphicImage library="imagens" name="edit.png"
+                                                style="border:0" title="Editar Usuário" />
+                                <f:setPropertyActionListener target="#{buser.user}"
+                                                             value="#{user}" />
+                                
+                            </h:commandLink>
+                    </p:column>
+                    <p:column>
+                        <h:commandLink action="#{buser.delete}"
+                                           onclick="if (!confirm('Confirma a exclusão do Usuário #{user.name}?'))
+                                                       return false;"
+                                           title="Excluir Usuário">
+                                <h:graphicImage library="imagens" name="remove.png"
+                                                style="border:0" />
+                                <f:setPropertyActionListener target="#{buser.user}"
+                                                             value="#{user}" />
+                            </h:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

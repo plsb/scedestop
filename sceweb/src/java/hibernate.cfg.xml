@@ -22,6 +22,7 @@
         <mapping class="br.sce.street.Street"/>
         <mapping class="br.sce.team.Team"/>
         <mapping class="br.sce.user.User"/>
+        <mapping class="br.sce.user.User"/>
         
     </session-factory>
 </hibernate-configuration>

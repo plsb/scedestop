@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Inserção/Edição de Usuários
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="register">
+
+                <h:inputHidden value="#{buser.user.id}"/>
+
+                <h:panelGrid columns="1">
+                    <p:outputLabel value="Nome:" for="name" />
+                    <p:inputText id="name" label="Nome" size="100"
+                                 maxlength="50" required="true" value="#{buser.user.name}"
+                                 requiredMessage="Informe o Usuário." style="text-transform:uppercase"
+                                 />
+
+                    <p:outputLabel value="Login:" for="login" />
+                    <p:inputText id="login" label="Login" size="50"
+                                 maxlength="50" required="true" value="#{buser.user.login}"
+                                 requiredMessage="Informe o Login." 
+                                 />
+                    <p:outputLabel value="Cidade: " for="city"/>
+                    <p:selectOneMenu id="city" value="#{buser.user.city}" required="true" 
+                                     requiredMessage="Informe a Cidade.">
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{buser.citySelect}"/>					 			
+                    </p:selectOneMenu> 
+
+
+                    <p:outputLabel value="Senha:" for="password" />
+                    <p:password id="password" value="#{buser.user.password}"
+                                feedback="true" promptLabel="digite a Senha" weakLabel="Fraca"
+                                goodLabel="Boa" size="15" required="true" requiredMessage="Informe a Senha"/>
+
+                    <p:outputLabel value="Confirmar Senha:" for="confirmpassword" />
+                    <h:inputSecret id="confirmpassword" label="Confirmar Senha"
+                                   value="#{buser.confirmPassword}" size="15" maxlength="10"
+                                   redisplay="true" 
+                                   required="true" requiredMessage="Confirme a Senha"/>
+                </h:panelGrid>
+
+                <br />
+                <p:commandButton action="#{barea.save}" value="Salvar" ajax="false"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

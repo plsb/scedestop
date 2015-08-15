@@ -21,7 +21,7 @@ public class City implements Serializable{
     
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     
     @Column(nullable = false, unique = true)
     private int idIBGE;
@@ -32,11 +32,11 @@ public class City implements Serializable{
     @Column(length = 2, nullable = false)
     private String state;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
