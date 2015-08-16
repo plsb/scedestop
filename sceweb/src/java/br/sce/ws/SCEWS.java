@@ -12,6 +12,8 @@ import br.sce.cycle.Cycle;
 import br.sce.cycle.CycleDAO;
 import br.sce.district.District;
 import br.sce.district.DistrictDAO;
+import br.sce.employee.Employee;
+import br.sce.employee.EmployeeDAO;
 import br.sce.street.Street;
 import br.sce.street.StreetDAO;
 import java.util.List;
@@ -48,6 +50,12 @@ public class SCEWS {
     public List<Street> listStreet(){
         StreetDAO sDAO = new StreetDAO();
         return sDAO.list();
+    }
+    
+    @WebMethod
+    public List<Employee> listEmployee(){
+        EmployeeDAO eDAO = new EmployeeDAO();
+        return eDAO.list();
     }
         
 }

@@ -62,16 +62,16 @@ public class CycleBean {
             
         }
 
-        return "/faces/limited/cyclelist.xhtml";
+        return "/limited/cyclelist.jsf";
     }
 
     public String newCycle() {
         cycle = new Cycle();
-        return "/faces/limited/cycle.xhtml";
+        return "/limited/cycle.jsf";
     }
 
     public String edit() {
-        return "/faces/limited/cycle.xhtml";
+        return "/limited/cycle.jsf";
     }
 
     public String remove() {

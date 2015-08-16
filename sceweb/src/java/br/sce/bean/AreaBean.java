@@ -49,12 +49,12 @@ public class AreaBean {
             
         }
 
-        return "/faces/limited/arealist.xhtml";
+        return "/limited/arealist.jsf";
     }
 
     public String newArea() {
         area = new Area();
-        return "/faces/limited/area.xhtml";
+        return "/limited/area.jsf";
     }
 
     public List<Area> getList() {
@@ -62,7 +62,7 @@ public class AreaBean {
     }
 
     public String edit() {
-        return "/faces/limited/area.xhtml";
+        return "/limited/area.jsf";
     }
 
     public String remove() {

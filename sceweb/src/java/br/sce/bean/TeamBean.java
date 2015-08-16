@@ -61,16 +61,16 @@ public class TeamBean {
             
         }
 
-        return "/faces/limited/teamlist.xhtml";
+        return "/limited/teamlist.jsf";
     }
 
     public String newTeam() {
         team = new Team();
-        return "/faces/limited/team.xhtml";
+        return "/limited/team.jsf";
     }
 
     public String edit() {
-        return "/faces/limited/team.xhtml";
+        return "/limited/team.jsf";
     }
 
     public String remove() {

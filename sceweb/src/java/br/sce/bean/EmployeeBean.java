@@ -67,12 +67,12 @@ public class EmployeeBean {
             
         }
 
-        return "/faces/limited/employeelist.xhtml";
+        return "/limited/employeelist.jsf";
     }
 
     public String newEmployee() {
         employee = new Employee();
-        return "/faces/limited/employee.xhtml";
+        return "/limited/employee.jsf";
     }
 
     public List<Employee> getList() {
@@ -80,7 +80,7 @@ public class EmployeeBean {
     }
 
     public String edit() {
-        return "/faces/limited/employee.xhtml";
+        return "/limited/employee.jsf";
     }
 
     public String remove() {

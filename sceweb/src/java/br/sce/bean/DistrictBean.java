@@ -62,16 +62,16 @@ public class DistrictBean {
             
         }
 
-        return "/faces/limited/districtlist.xhtml";
+        return "/limited/districtlist.jsf";
     }
 
     public String newDistrict() {
         district = new District();
-        return "/faces/limited/district.xhtml";
+        return "/limited/district.jsf";
     }
 
     public String edit() {
-        return "/faces/limited/district.xhtml";
+        return "/limited/district.jsf";
     }
 
     public String remove() {

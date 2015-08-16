@@ -61,12 +61,12 @@ public class StreetBean {
             
         }
 
-        return "/faces/limited/streetlist.xhtml";
+        return "/limited/streetlist.jsf";
     }
 
     public String newQuarter() {
         street = new Street();
-        return "/faces/limited/street.xhtml";
+        return "/limited/street.jsf";
     }
 
     public List<Street> getList() {
@@ -74,7 +74,7 @@ public class StreetBean {
     }
 
     public String edit() {
-        return "/faces/limited/street.xhtml";
+        return "/limited/street.jsf";
     }
 
     public String remove() {
