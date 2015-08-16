@@ -3,25 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/limited/district.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/TeamBean.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/DistrictBean.java</file>
             <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/public/login.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/city/City.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/EmployeeBean.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/template/layoutlogin.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/limited/street.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/admin/userlist.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/limited/streetlist.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/MapBean.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/ws/SCEWS.java</file>
+            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/template/layout.xhtml</file>
             <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/UserBean.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/AreaBean.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/admin/user.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/limited/arealist.xhtml</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/StreetBean.java</file>
+            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/web/template/layoutlogin.xhtml</file>
             <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/user/User.java</file>
-            <file>file:/C:/Users/Pedro%20Saraiva/Documents/GitHub/scedestop/sceweb/src/java/br/sce/bean/CycleBean.java</file>
         </group>
     </open-files>
 </project-private>

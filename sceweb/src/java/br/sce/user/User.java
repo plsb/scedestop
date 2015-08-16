@@ -12,6 +12,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,10 +26,10 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 public class User implements Serializable {
-
+    
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @Column(length = 150, nullable = false)
     private String name;
@@ -44,7 +45,7 @@ public class User implements Serializable {
     
     private boolean active;
 
-    @ElementCollection(targetClass = String.class)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_permission",
             uniqueConstraints = {
@@ -53,11 +54,11 @@ public class User implements Serializable {
     @Column(name = "permission", length = 50)
     private List<String> permission;// = new HashSet<String>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -154,6 +155,7 @@ public class User implements Serializable {
         }
         return true;
     }
+    private static final long serialVersionUID = -2268058922183899685L;
 
     
 

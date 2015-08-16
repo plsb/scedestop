@@ -31,6 +31,8 @@ public class City implements Serializable{
     
     @Column(length = 2, nullable = false)
     private String state;
+    
+    private boolean active;
 
     public Integer getId() {
         return id;
@@ -62,6 +64,14 @@ public class City implements Serializable{
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override

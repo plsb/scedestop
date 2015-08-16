@@ -41,10 +41,10 @@ img {
 }
 
 #footer {
-	
-	height: 150px;
-	margin-top: 5px;
-	padding: 10px;
+        position: relative;
+        background-color: #c2dfef;
+	margin: 10px, 0px, 0px, 0px;
+	padding: 5px;
 	text-align: center;
 }
 

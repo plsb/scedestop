@@ -42,13 +42,13 @@ public class UserBean {
 
         return citySelect;
     }
-    
+
     private void showDataSelectCity(List<SelectItem> select, List<City> citys, String prefixo) {
 
         SelectItem item = null;
         if (citys != null) {
             for (City city : citys) {
-                item = new SelectItem(city, city.getDescription()+"-"+city.getState());
+                item = new SelectItem(city, city.getDescription() + "-" + city.getState());
                 item.setEscape(false);
 
                 select.add(item);
@@ -57,7 +57,6 @@ public class UserBean {
             }
         }
     }
-
 
     public String assignsPermission(User u, String permission) {
         this.user = u;
@@ -99,7 +98,7 @@ public class UserBean {
 
     public String save() {
         FacesContext context = FacesContext.getCurrentInstance();
-
+        user.setName(user.getName().toUpperCase());
         String senha = this.user.getPassword();
         if (!senha.equals(this.confirmPassword)) {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN,
@@ -109,7 +108,17 @@ public class UserBean {
 
         }
         UserDAO uDAO = new UserDAO();
-        uDAO.add(this.user);
+        if (user.getId() == 0) {
+            user.setActive(true);
+            user.getPermission().add("ROLE_USER");
+            uDAO.add(this.user);
+            FacesMessage facesMessage = new FacesMessage(
+                    "Sucesso ao adicionar: "+user.getName(), null);
+        } else {
+            uDAO.update(this.user);
+            FacesMessage facesMessage = new FacesMessage(
+                    "Sucesso ao editar: "+user.getName(), null);
+        }
 
         return "/admin/userlist";// this.destinoSalvar;
     }
@@ -117,6 +126,8 @@ public class UserBean {
     public String delete() {
         UserDAO uDAO = new UserDAO();
         uDAO.remove(this.user);
+        FacesMessage facesMessage = new FacesMessage(
+                    "Sucesso ao remover: "+user.getName(), null);
         this.list = null;
         return null;
     }
