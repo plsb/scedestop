@@ -9,6 +9,7 @@ import br.sce.district.District;
 import br.sce.district.DistrictDAO;
 import br.sce.street.Street;
 import br.sce.street.StreetDAO;
+import br.sce.util.UsuarioAtivo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -41,7 +42,8 @@ public class StreetBean {
     
 
         
-    public String save() {       
+    public String save() {     
+        street.setCity(UsuarioAtivo.getUser().getCity());
         street.setDescription(street.getDescription().toUpperCase());
         if(street.getIdQuarter()==0){
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Código do Quarteirão Não Pode Ser 0", ""));

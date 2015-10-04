@@ -7,11 +7,13 @@ package br.sce.bean;
 
 import br.sce.area.Area;
 import br.sce.area.AreaDAO;
+import br.sce.util.UsuarioAtivo;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +38,7 @@ public class AreaBean {
 
     public String save() {
         area.setDescription(area.getDescription().toUpperCase());
+        area.setCity(UsuarioAtivo.getUser().getCity());        
         if (area.getId() == 0) {
             dArea.add(area);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "

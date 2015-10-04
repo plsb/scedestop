@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="limited/cyclelist.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="template/layout.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="limited/area.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="limited/street.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="index.jsp" x="150" y="750" zoom="true"/>
+        <Node id="public/login.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="template/layoutlogin.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="limited/teamlist.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="admin/userlist.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="limited/districtlist.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="limited/team.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="admin/user.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="limited/cycle.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="limited/employeelist.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="public/footer.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="limited/employee.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="public/menu.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="limited/map.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="limited/arealist.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="limited/district.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="limited/streetlist.xhtml" x="400" y="750" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

@@ -15,6 +15,7 @@ import br.sce.employee.Employee;
 import br.sce.employee.EmployeeDAO;
 import br.sce.team.Team;
 import br.sce.team.TeamDAO;
+import br.sce.util.UsuarioAtivo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -37,28 +38,28 @@ public class TeamBean {
     private List<Team> list;
     private List<SelectItem> employeeMasterSelect;
     private List<SelectItem> employeeSupervisedSelect;
-    
+
     public List<Team> getList() {
         return dTeam.list();
     }
 
     public String save() {
-        if(dTeam.verifyMasterSupervised(team.getMaster(),team.getSupervised())){
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Equipe Já Cadastrada!", ""));
-            return null;
-        }
-                
-        if (team.getId() == 0) {
-             dTeam.add(team);
-            context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
-                    + team.getMaster().getName() +" | "+team.getSupervised().getName(), ""));
+        team.setCity(UsuarioAtivo.getUser().getCity());
 
-           
+        if (team.getId() == 0) {
+            if (dTeam.verifyMasterSupervised(team.getMaster(), team.getSupervised())) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Equipe Já Cadastrada!", ""));
+                return null;
+            }
+            dTeam.add(team);
+            context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
+                    + team.getMaster().getName() + " | " + team.getSupervised().getName(), ""));
+
         } else {
             dTeam.update(team);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
-                    + team.getMaster().getName() +" | "+team.getSupervised().getName(), ""));
-            
+                    + team.getMaster().getName() + " | " + team.getSupervised().getName(), ""));
+
         }
 
         return "/limited/teamlist.jsf";
@@ -75,7 +76,7 @@ public class TeamBean {
 
     public String remove() {
         context.addMessage(null, new FacesMessage("Sucesso ao Excluir: "
-                + team.getMaster().getName() +" | "+team.getSupervised().getName(), ""));
+                + team.getMaster().getName() + " | " + team.getSupervised().getName(), ""));
 
         dTeam.remove(this.team);
         this.list = dTeam.list();
@@ -97,8 +98,8 @@ public class TeamBean {
     }
 
     public List<SelectItem> getEmployeeMasterSelect() {
-   
-       if (this.employeeMasterSelect == null) {
+
+        if (this.employeeMasterSelect == null) {
             this.employeeMasterSelect = new ArrayList<SelectItem>();
             //ContextoBean contextoBean = scs.util.ContextoUtil.getContextoBean();
 
@@ -138,6 +139,4 @@ public class TeamBean {
 
     }
 
-   
-    
 }

@@ -39,8 +39,14 @@
             </div>
             <div id="footer">
                 <ui:insert name="footer">
-                    <br /><br />
-                    
+                    Usuário Logado: 
+                    <p:outputLabel value="#{contextBean.user.name}"  />
+                    <br />
+                    Cidade:
+                    <p:outputLabel value="#{contextBean.user.city.description} - #{contextBean.user.city.state}"  />
+                     <br />
+                    endemics versão 1.0 -  Copyright © 2015                    
+                    <br />
                 </ui:insert> 
             </div>
         </div>

@@ -6,6 +6,13 @@
 package br.sce.area;
 
 import br.sce.util.GenericDAO;
+import br.sce.util.HibernateUtil;
+import br.sce.util.UsuarioAtivo;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import scs.web.ContextBean;
 
 /**
  *
@@ -15,6 +22,26 @@ public class AreaDAO extends GenericDAO<Area>{
 
     public AreaDAO() {
         super(Area.class);
+    }
+    
+    public List<Area> list() {
+        List<Area> lista = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            lista = this.getSessao().createCriteria(Area.class).
+                    add(Restrictions.eq("city", UsuarioAtivo.getUser().getCity())).
+                    addOrder(Order.asc("description")).list();
+            
+        } catch (Throwable e) {
+            if (getTransacao().isActive()) {
+                getTransacao().rollback();
+            }
+            JOptionPane.showMessageDialog(null, "Não foi possível listar: " + e.getMessage());
+        } finally {
+            getSessao().close();
+        }
+        return lista;
     }
     
     

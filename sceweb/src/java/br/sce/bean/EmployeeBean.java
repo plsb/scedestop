@@ -9,6 +9,7 @@ import br.sce.area.Area;
 import br.sce.area.AreaDAO;
 import br.sce.employee.Employee;
 import br.sce.employee.EmployeeDAO;
+import br.sce.util.UsuarioAtivo;
 import br.sce.util.Util;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -40,7 +41,8 @@ public class EmployeeBean {
     }
 
     
-    public String save() {       
+    public String save() {               
+        employee.setCityRegister(UsuarioAtivo.getUser().getCity());
         employee.setName(employee.getName().toUpperCase());
         employee.setAddress(employee.getAddress().toUpperCase());
         employee.setCity(employee.getCity().toUpperCase());

@@ -11,6 +11,7 @@ import br.sce.cycle.Cycle;
 import br.sce.cycle.CycleDAO;
 import br.sce.district.District;
 import br.sce.district.DistrictDAO;
+import br.sce.util.UsuarioAtivo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -48,7 +49,7 @@ public class CycleBean {
 
     public String save() {
         cycle.setDescription(cycle.getDescription().toUpperCase());
-        
+        cycle.setCity(UsuarioAtivo.getUser().getCity());
         if (cycle.getId() == 0) {
              dCycle.add(cycle);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "

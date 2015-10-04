@@ -20,10 +20,7 @@
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
-    </welcome-file-list>
-    
+       
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
         <param-value>casablanca</param-value>  
@@ -57,7 +54,7 @@
     <!-- SSPRING SECURITY -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
+        <param-value>            
             /WEB-INF/applicationContext-security.xml
         </param-value>
     </context-param>
@@ -78,4 +75,8 @@
         </listener-class>
     </listener>
     <!-- SSPRING SECURITY -->
+    <filter>
+        <filter-name>conexaoFiter</filter-name>
+        <filter-class>br.sce.bean.filter.ConectionHibernateFilter</filter-class>
+    </filter>
 </web-app>

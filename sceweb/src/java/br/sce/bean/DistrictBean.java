@@ -9,6 +9,7 @@ import br.sce.area.Area;
 import br.sce.area.AreaDAO;
 import br.sce.district.District;
 import br.sce.district.DistrictDAO;
+import br.sce.util.UsuarioAtivo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -45,6 +46,7 @@ public class DistrictBean {
 
     public String save() {
         district.setDescription(district.getDescription().toUpperCase());
+        district.setCity(UsuarioAtivo.getUser().getCity());
         if(district.getDistrictId()==0){
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Código do Bairro Não Pode Ser 0", ""));
             return "";
