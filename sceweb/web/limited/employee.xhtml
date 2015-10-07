@@ -27,6 +27,8 @@
                         <p:panel header="Detalhes Pessoais">
 
                             <h:panelGrid columns="2" columnClasses="label, value">
+                                <p:selectBooleanCheckbox value="#{bemployee.employee.active}" />
+                                <h:outputText value="Ativo? " />
                                 <h:outputText value="Nome:" />
                                 <p:inputText value="#{bemployee.employee.name}" required="true" 
                                              requiredMessage="Informe o Nome." style="text-transform:uppercase"/>

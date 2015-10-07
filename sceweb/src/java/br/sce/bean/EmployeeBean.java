@@ -57,6 +57,7 @@ public class EmployeeBean {
             return null;
         }
         if (employee.getId() == 0) {
+            employee.setActive(true);
             dEmployee.add(employee);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + employee.getName(), ""));
@@ -74,6 +75,7 @@ public class EmployeeBean {
 
     public String newEmployee() {
         employee = new Employee();
+        employee.setActive(true);
         return "/limited/employee.jsf";
     }
 

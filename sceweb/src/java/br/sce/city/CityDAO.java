@@ -6,15 +6,34 @@
 package br.sce.city;
 
 import br.sce.util.GenericDAO;
+import br.sce.util.HibernateUtil;
+import java.util.List;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author Pedro Saraiva
  */
-public class CityDAO extends GenericDAO<City>{
+public class CityDAO extends GenericDAO<City> {
 
     public CityDAO() {
         super(City.class);
     }
-    
+
+    public List<City> listActivesByCity(int idIdbge) {
+        List<City> cities=null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            cities = this.getSessao().createCriteria(City.class).
+                    add(Restrictions.eq("idIBGE", idIdbge))
+                    .add(Restrictions.eq("active", true))
+                    .list();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cities;
+    }
+
 }

@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="18dip"
+	android:background="#E8E8E8"
+	>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Pneu"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Tanque"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Tambor"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtPneu"
+                    android:layout_width="74dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtTanque"
+                    android:layout_width="74dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtTambor"
+                    android:layout_width="74dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:text="Barril"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:text="Tina"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:text="Pote"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+
+                </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtBarril"
+                    android:layout_width="74dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtTina"
+                    android:layout_width="74dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtPote"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Filtro"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Quartinha"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Vasos"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtFiltro"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtQuartinha"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtVaso"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Mat. Cons."
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Peça Car."
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="Garrafa"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtMatConstrucao"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtPecaCarro"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtGarrafa"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="28dp"
+                    android:text="Lata"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="28dp"
+                    android:text="Dep. Plást."
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="28dp"
+                    android:text="Poço"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtLata"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtDepPlasticos"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtPoco"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:text="Cisterna"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:text="Cacimba"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:text="Cx. D'água"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtCisterna"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtCacimba"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtCxAgua"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:text="Rec. Natur."
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:text="Armadilha"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POOL"
+                    android:textColor="#000"
+                    android:textSize="15dip" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/EdtRecNaturais"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/EdtArmadilha"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+                <EditText
+                    android:id="@+id/EdtPOOL"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ralo"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:paddingRight="50dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Piscina"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:paddingRight="50dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Outros"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:paddingRight="50dp"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:layout_width="54dp"
+                    android:numeric="integer"
+                    android:maxLines="1"
+                    android:layout_height="45dp"
+                    android:id="@+id/EdtRalo"
+                    android:gravity="center"
+                    />
+
+                <EditText
+                    android:id="@+id/EdtPiscina"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+                <EditText
+                    android:id="@+id/EdtOutro"
+                    android:layout_width="54dp"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:numeric="integer"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="left">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:text="         Dep.Eliminados "
+                        android:textColor="#000"
+                        android:textSize="15dip" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+
+            <EditText
+                android:id="@+id/EdtDepElimVisi"
+                android:layout_width="115dp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="10dip"
+                android:numeric="integer"
+                android:gravity="center"
+                />
+
+            <Button
+                android:text="Amostra"
+                android:layout_width="110dip"
+                android:layout_height="40dip"
+                android:id="@+id/btnCadAmostra"
+                android:gravity="center"
+                android:layout_marginRight="10dip"
+                android:textSize="18dp"
+                android:background="#1E90FF"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+               />
+
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Dep. Trat. Focal"
+                android:textColor="#000"
+                android:textSize="15dip" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Dep. Trat. Perifocal"
+                android:textColor="#000"
+                android:textSize="15dip" />
+
+        </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+
+            <EditText
+                android:id="@+id/EdtDep_Tratados_Focal"
+                android:layout_width="120dp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="5dip"
+                android:numeric="integer"
+                android:gravity="center"
+                />
+
+
+            <EditText
+                android:id="@+id/EdtDep_Tratados_Perifocal"
+                android:layout_width="120dp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="8dip"
+                android:numeric="decimal"
+                android:gravity="center"
+                />
+
+                </TableRow>
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qtde. Larvicida(ML)"
+                android:textColor="#000"
+                android:textSize="15dip"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qtde. Larvicida(GT)"
+                android:textColor="#000"
+                android:textSize="15dip"
+                />
+
+        </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/EdtLarvicidasML"
+                android:layout_width="130dp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="5dip"
+                android:numeric="decimal"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/EdtLarvicidas"
+                android:layout_width="130dp"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="5dip"
+                android:numeric="decimal"
+                android:gravity="center"
+                />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Tipo larvicida"
+                android:textColor="#000"
+                android:textSize="15dip" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+
+            <Spinner
+                android:layout_width="130dp"
+                android:layout_height="48dp"
+                android:id="@+id/SpnTipoLarvicida"
+                android:gravity="center"
+                android:layout_marginLeft="0dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observações"
+                android:textColor="#000"
+                android:textSize="15dip"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/EdtObservacoes"
+                android:maxLines="1"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="5dip"
+                android:gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+            <Button
+                android:text="Salvar"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnGravar"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:background="#006400"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+            <Button
+                android:text="Cancelar"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelar"
+                android:gravity="center" android:textSize="18dp"
+                android:background="#FF0000"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

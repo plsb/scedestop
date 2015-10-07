@@ -18,6 +18,7 @@ import br.sce.employee.Employee;
 import br.sce.employee.EmployeeDAO;
 import br.sce.street.Street;
 import br.sce.street.StreetDAO;
+import java.util.Date;
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -28,25 +29,7 @@ import javax.jws.WebService;
  * @author 'Pedro
  */
 @WebService
-public class SCEWS {
-
-    @WebMethod
-    public List<Area> listAreas(int idCity){
-        CityDAO cDAO = new CityDAO();
-        City c = cDAO.checkExists("id", idCity).get(0);
-        
-        AreaDAO aDAO = new AreaDAO();
-        return aDAO.checkExists("city", c);
-    } 
-    
-    @WebMethod
-    public List<District> listDistrict(int idCity){
-        CityDAO cDAO = new CityDAO();
-        City c = cDAO.checkExists("id", idCity).get(0);
-        
-        DistrictDAO dDAO = new DistrictDAO();
-        return dDAO.checkExists("city", c);
-    }
+public class SCEWS {   
     
     @WebMethod
     public List<Cycle> listCycle(int idCity){
@@ -54,7 +37,7 @@ public class SCEWS {
         City c = cDAO.checkExists("id", idCity).get(0);
         
         CycleDAO cyDAO = new CycleDAO();
-        return cyDAO.checkExists("city", c);
+        return cyDAO.listCyclesByCity(c, new Date());
     }
 
     @WebMethod
@@ -72,13 +55,13 @@ public class SCEWS {
         City c = cDAO.checkExists("id", idCity).get(0);
         
         EmployeeDAO eDAO = new EmployeeDAO();
-        return eDAO.checkExists("cityRegister", c);
+        return eDAO.listActivesByCity(c);
     }
     
     @WebMethod
     public List<City> listCity(int idIBGE){
         CityDAO cDAO = new CityDAO();
-        return cDAO.checkExists("idIBGE", idIBGE);
+        return cDAO.listActivesByCity(idIBGE);
     }
         
 }

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/ActionBarCompat" android:gravity="center">
+    style="@style/ActionBarCompat" android:gravity="center"
+    android:background="#1E90FF">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="endemics v1.0"
+        android:text="endemics"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:id="@+id/textView"
         android:textSize="40dp" />
 </LinearLayout>

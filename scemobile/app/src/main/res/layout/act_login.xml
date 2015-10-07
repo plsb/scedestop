@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,17 +6,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#7AC5CD">
+    android:background="#E8E8E8"
+    android:padding="10dp">
 
-    <include layout="@layout/act_actionbar"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="10dp"
+        android:padding="30dp"
         >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:gravity="center_horizontal"
+                >
 
+                <Button
+                    android:drawableTop="@drawable/logocomplpeq"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+        </LinearLayout>
         <EditText
             android:id="@+id/LoginEtUserName"
             android:layout_width="match_parent"
@@ -43,11 +61,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:textColor="#FFFFFF"
             android:layout_margin="4dp"
             android:text="Entrar"
-
+            android:textStyle="bold"
             android:background="@drawable/button_default_bg"
             />
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

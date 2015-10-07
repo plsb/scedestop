@@ -1,9 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/FooterBar" >
-    <TextView android:text="endemics v1.0 -  Copyright © 2015"
+    <TextView android:text="versão 1.0 -  Copyright © 2015"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="#606060"
         android:gravity="center"
-        android:paddingTop="10dip"/>
+        android:paddingTop="10dip"
+        android:textStyle="bold"/>
 </LinearLayout>

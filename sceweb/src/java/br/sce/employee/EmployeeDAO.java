@@ -6,6 +6,7 @@
 package br.sce.employee;
 
 import br.sce.area.Area;
+import br.sce.city.City;
 import br.sce.district.District;
 import br.sce.util.GenericDAO;
 import br.sce.util.HibernateUtil;
@@ -20,12 +21,12 @@ import scs.web.ContextBean;
  *
  * @author Pedro Saraiva
  */
-public class EmployeeDAO extends GenericDAO<Employee>{
+public class EmployeeDAO extends GenericDAO<Employee> {
 
     public EmployeeDAO() {
         super(Employee.class);
     }
-    
+
     public List<Employee> listMaster() {
         List<Employee> lista = null;
         try {
@@ -33,7 +34,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
             setTransacao(getSessao().beginTransaction());
             lista = this.getSessao().createCriteria(Employee.class).
                     add(Restrictions.eq("type", 'S')).list();
-            
+
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
@@ -44,7 +45,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
         }
         return lista;
     }
-    
+
     public List<Employee> listSupervised() {
         List<Employee> lista = null;
         try {
@@ -52,7 +53,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
             setTransacao(getSessao().beginTransaction());
             lista = this.getSessao().createCriteria(Employee.class).
                     add(Restrictions.eq("type", 'A')).list();
-            
+
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
@@ -63,7 +64,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
         }
         return lista;
     }
-   
+
     public List<Employee> list() {
         List<Employee> lista = null;
         try {
@@ -72,7 +73,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
             lista = this.getSessao().createCriteria(Employee.class).
                     add(Restrictions.eq("cityRegister", UsuarioAtivo.getUser().getCity())).
                     addOrder(Order.asc("name")).list();
-            
+
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
@@ -83,6 +84,21 @@ public class EmployeeDAO extends GenericDAO<Employee>{
         }
         return lista;
     }
-    
-    
+
+    public List<Employee> listActivesByCity(City c) {
+        List<Employee> employees = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            employees = this.getSessao().createCriteria(Employee.class)
+                    .add(Restrictions.eq("active", true))
+                    .add(Restrictions.eq("cityRegister", c))
+                    .list();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return employees;
+    }
+
 }

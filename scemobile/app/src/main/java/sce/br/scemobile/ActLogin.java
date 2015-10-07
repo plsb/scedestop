@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 import sce.br.dao.Database;
 import sce.br.model.City;
+import sce.br.model.Cycle;
 import sce.br.model.Employee;
 import sce.br.model.Mensagem;
 import sce.br.util.Ativo;
@@ -106,6 +107,19 @@ public class ActLogin extends Activity implements View.OnClickListener{
                 city.setIdIBGE(Integer.parseInt(cursorCity.getString(cursorCity.getColumnIndex("idibge")).toString()));
                 city.setId(Integer.parseInt(cursorCity.getString(cursorCity.getColumnIndex("_ID")).toString()));
                 Ativo.setCity(city);
+            }
+
+            Cursor cursorCycle = db.consult("cycle",new String[] { "*" },
+                    null, null, null, null,
+                    null, null);
+            if(cursorCycle.getCount()!=0){
+                cursorCycle.moveToFirst();
+                Cycle cycle = new Cycle();
+                cycle.setDescription(cursorCycle.getString(cursorCycle.getColumnIndex("description")).toString());
+                cycle.setEndDate(cursorCycle.getString(cursorCycle.getColumnIndex("dtfim")).toString());
+                cycle.setStartDate(cursorCycle.getString(cursorCycle.getColumnIndex("dtstart")).toString());
+                cycle.setId(Integer.parseInt(cursorCycle.getString(cursorCycle.getColumnIndex("_ID")).toString()));
+                Ativo.setCycle(cycle);
             }
 
             return true;

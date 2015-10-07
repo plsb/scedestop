@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="18dip"
+	android:background="#E8E8E8"
+	>
+	<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+	
+    
+     <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Cadastro de Tubo Amostra"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:textStyle="bold"/>	
+            
+     
+     
+     			
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		     android:layout_marginTop="30dp"
+		    >
+
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="15dp"
+		        android:text="Código"
+		        android:textColor="#000"
+		        android:textSize="15dip" />
+		</LinearLayout>
+		<LinearLayout 
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		     >
+     	
+	     	 	
+	     	<EditText
+			    	    android:id="@+id/EdtCodAmostra"
+			    	    android:layout_width="115dp"
+			    	    android:maxLines="1"
+			    	    android:layout_height="wrap_content"
+			    	    android:layout_marginBottom="5dip"
+			    	    android:layout_marginRight="10dip" 
+			    	    android:numeric="integer"
+			    	    android:gravity="center"
+			    	    />
+	     </LinearLayout>
+	     
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		     
+		    >
+
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="15dp"
+		        android:text="Depósito                               Nº Larvas"
+		        android:textColor="#000"
+		        android:textSize="15dip" />
+		</LinearLayout>
+		<LinearLayout 
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		     >
+     	
+	     	<Spinner 
+				    android:layout_width="180dp"
+				    android:layout_height="48dp"
+				    android:id="@+id/SpnTipoDeposito"
+				    android:gravity="center"
+				    android:layout_marginLeft="0dp"
+				    />		
+	     	
+	     	<EditText
+			    	    android:id="@+id/EdtNumLavas"
+			    	    android:layout_width="100dp"
+			    	    android:maxLines="1"
+			    	    android:layout_height="wrap_content"
+			    	    android:layout_marginBottom="5dip"
+			    	    android:layout_marginRight="10dip" 
+			    	    android:numeric="integer"
+			    	    android:gravity="center"
+			    	    />
+	     </LinearLayout>
+	     
+		<LinearLayout 
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center" >
+				<Button 
+				    android:text="Gravar"
+				    android:layout_width="142dp"
+				    android:layout_height="wrap_content"
+				    android:id="@+id/btnGravarAmostra"
+				    android:gravity="center"
+				    android:textSize="18dp"
+                    android:background="#006400"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+				<Button 
+				    android:text="Cancelar"
+				    android:layout_width="142dp"
+				    android:layout_height="wrap_content"
+				    android:id="@+id/btnCancelarAmostra"
+				    android:gravity="center" android:textSize="18dp"
+                    android:background="#FF0000"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+		</LinearLayout>		
+     
+     </LinearLayout>
+    
+
+</ScrollView>

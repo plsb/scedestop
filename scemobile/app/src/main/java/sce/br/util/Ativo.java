@@ -1,6 +1,7 @@
 package sce.br.util;
 
 import sce.br.model.City;
+import sce.br.model.Cycle;
 import sce.br.model.Employee;
 
 /**
@@ -10,6 +11,7 @@ public class Ativo {
 
     private static Employee user;
     private static City city;
+    private static Cycle cycle;
 
     public static Employee getUser() {
         return user;
@@ -25,5 +27,13 @@ public class Ativo {
 
     public static void setCity(City city) {
         Ativo.city = city;
+    }
+
+    public static Cycle getCycle() {
+        return cycle;
+    }
+
+    public static void setCycle(Cycle cycle) {
+        Ativo.cycle = cycle;
     }
 }

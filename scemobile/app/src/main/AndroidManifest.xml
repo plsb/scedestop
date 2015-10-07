@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/newlogo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -13,7 +13,7 @@
         </activity>
         <activity
             android:name=".ActLogin"
-            android:label="" >
+            android:label="endemics" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +21,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActVisit"
+            android:name=".ActSynchronize"
             android:label="" >
         </activity>
         <activity
-            android:name=".ActSynchronize"
+            android:name=".ActStreet"
+            android:label="" >
+        </activity>
+        <activity
+            android:name=".ActVisitIni"
+            android:label="" >
+        </activity>
+        <activity
+            android:name=".ActVisitLast"
+            android:label="" >
+        </activity>
+        <activity
+            android:name=".ActAmostra"
             android:label="" >
         </activity>
 

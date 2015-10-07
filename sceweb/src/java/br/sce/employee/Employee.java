@@ -76,6 +76,18 @@ public class Employee implements Serializable{
     
     @ManyToOne
     private City cityRegister;
+    
+    private boolean active;
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
+    
 
     public City getCityRegister() {
         return cityRegister;
