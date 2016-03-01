@@ -33,7 +33,9 @@ public class EmployeeDAO extends GenericDAO<Employee> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             setTransacao(getSessao().beginTransaction());
             lista = this.getSessao().createCriteria(Employee.class).
-                    add(Restrictions.eq("type", 'S')).list();
+                    add(Restrictions.eq("cityRegister", UsuarioAtivo.getUser().getCity())).
+                    add(Restrictions.eq("type", 'S')).
+                    addOrder(Order.asc("name")).list();
 
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
@@ -52,7 +54,9 @@ public class EmployeeDAO extends GenericDAO<Employee> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             setTransacao(getSessao().beginTransaction());
             lista = this.getSessao().createCriteria(Employee.class).
-                    add(Restrictions.eq("type", 'A')).list();
+                    add(Restrictions.eq("cityRegister", UsuarioAtivo.getUser().getCity())).
+                    add(Restrictions.eq("type", 'A')).
+                    addOrder(Order.asc("name")).list();
 
         } catch (Throwable e) {
             if (getTransacao().isActive()) {

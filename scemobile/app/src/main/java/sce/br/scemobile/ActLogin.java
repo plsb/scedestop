@@ -48,11 +48,15 @@ public class ActLogin extends Activity implements View.OnClickListener{
         Database db = new Database(ActLogin.this);
         db.open();
         try{
-            Cursor cursor = db.consult("user",
+            Cursor cursorUser = db.consult("user",
                     new String[] { "*" },
                     null, null, null, null,
                     null, null);
-            if(cursor.getCount()==0){
+            Cursor cursorCycle = db.consult("cycle",
+                    new String[] { "*" },
+                    null, null, null, null,
+                    null, null);
+            if(cursorUser.getCount()==0 || cursorCycle.getCount()==0){
                 Intent i = new Intent(ActLogin.this,ActSynchronize.class);
                 finish();
                 startActivity(i);
@@ -127,5 +131,10 @@ public class ActLogin extends Activity implements View.OnClickListener{
             Toast.makeText(ActLogin.this,"Dados Incorretos!",Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

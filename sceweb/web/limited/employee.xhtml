@@ -19,31 +19,29 @@
         <ui:define name="body">
 
             <h:form id="register">
-
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:inputHidden value="#{bemployee.employee.id}"/>
-
-                <p:tabView>
-                    <p:tab id="personal" title="Pessoal">
-                        <p:panel header="Detalhes Pessoais">
-
-                            <h:panelGrid columns="2" columnClasses="label, value">
+                <p:panel id="basic" header="Cadastro/Edição de Funcionários" style="margin-bottom:20px">
+                    <p:tabView>
+                        <p:tab id="personal" title="Pessoal">
+                            <h:panelGrid columns="2" >
                                 <p:selectBooleanCheckbox value="#{bemployee.employee.active}" />
                                 <h:outputText value="Ativo? " />
-                                <h:outputText value="Nome:" />
-                                <p:inputText value="#{bemployee.employee.name}" required="true" 
+                                <h:outputText value="Nome: *" />
+                                <p:inputText value="#{bemployee.employee.name}" required="false" 
                                              requiredMessage="Informe o Nome." style="text-transform:uppercase"/>
 
-                                <h:outputText value="CPF:" />
+                                <h:outputText value="CPF: *" />
                                 <p:inputMask  size="20" mask="999.999.999-99" 
-                                              value="#{bemployee.employee.cpf}" required="true" 
-                                             requiredMessage="Informe o Cpf." />
+                                              value="#{bemployee.employee.cpf}" required="false" 
+                                              requiredMessage="Informe o Cpf." />
 
-                                <h:outputText value="RG:" />
-                                <p:inputText value="#{bemployee.employee.rg}" required="true" 
+                                <h:outputText value="RG: *" />
+                                <p:inputText value="#{bemployee.employee.rg}" required="false" 
                                              requiredMessage="Informe o RG." />
 
-                                <h:outputText value="Gênero:" />
-                                <p:selectOneButton value="#{bemployee.employee.genre}" required="true"
+                                <h:outputText value="Gênero: *" />
+                                <p:selectOneButton value="#{bemployee.employee.genre}" required="false"
                                                    requiredMessage="Informe o Genêro">
                                     <f:selectItem itemLabel="Masculino" itemValue="M" />
                                     <f:selectItem itemLabel="Feminino" itemValue="F" />
@@ -51,78 +49,81 @@
 
 
                             </h:panelGrid>
-                        </p:panel>
-                    </p:tab>
 
-                    <p:tab id="adress" title="Endereço">
-                        <p:panel header="Detalhes Endereço">
+                        </p:tab>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Rua/Número:" />
-                                <p:inputText value="#{bemployee.employee.address}" required="true" 
+                        <p:tab id="adress" title="Endereço">
+
+
+                            <h:panelGrid columns="2" >
+                                <h:outputText value="Rua/Número: *" />
+                                <p:inputText value="#{bemployee.employee.address}" required="false" 
                                              requiredMessage="Informe o Endereço." style="text-transform:uppercase"/>
 
-                                <h:outputText value="Cidade:" />
-                                <p:inputText value="#{bemployee.employee.city}" required="true" 
+                                <h:outputText value="Cidade: *" />
+                                <p:inputText value="#{bemployee.employee.city}" required="false" 
                                              requiredMessage="Informe o Cidade." style="text-transform:uppercase"/>
 
-                                <h:outputText value="Bairro:" />
-                                <p:inputText value="#{bemployee.employee.district}" required="true" 
+                                <h:outputText value="Bairro: *" />
+                                <p:inputText value="#{bemployee.employee.district}" required="false" 
                                              requiredMessage="Informe o Bairro." style="text-transform:uppercase"/>
 
-                                <h:outputText value="Estado:" />
-                                <p:inputText value="#{bemployee.employee.state}" required="true" 
+                                <h:outputText value="Estado: *" />
+                                <p:inputText value="#{bemployee.employee.state}" required="false" 
                                              requiredMessage="Informe o Estado." style="text-transform:uppercase">                              
                                     <f:validateLength minimum="1" maximum="2" />
                                 </p:inputText>
 
-                                <h:outputText value="CEP:" />
-                                <p:inputMask mask="99999-999" value="#{bemployee.employee.cep}" required="true" 
+                                <h:outputText value="CEP: *" />
+                                <p:inputMask mask="99999-999" value="#{bemployee.employee.cep}" required="false" 
                                              requiredMessage="Informe o CEP." /> 
 
                             </h:panelGrid>
-                        </p:panel>
-                    </p:tab>
 
-                    <p:tab id="other" title="Outros">
-                        <p:panel header="Outros">
+                        </p:tab>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <p:outputLabel for="dateOfBith" value="Data de Nascimento:" />
-                                <p:calendar id="dateOfBith" showOn="button" value="#{bemployee.employee.dateOfBirth}" required="true"
+                        <p:tab id="other" title="Outros">
+
+
+                            <h:panelGrid columns="2" >
+                                <p:outputLabel for="dateOfBith" value="Data de Nascimento: *" />
+                                <p:calendar id="dateOfBith" showOn="button" value="#{bemployee.employee.dateOfBirth}" required="false"
                                             requiredMessage="Informe a Data de Nascimento" pattern="dd/MM/yyyy"/>
 
-                                <h:outputText value="Telefone:" />
+                                <h:outputText value="Telefone: *" />
                                 <p:inputMask mask="(99)99999-9999" value="#{bemployee.employee.phone}" required="false" 
                                              requiredMessage="Informe o IMEI o telefone."/>
 
                                 <h:outputText value="Nº Inscrição:" />
-                                <p:inputText value="#{bemployee.employee.registration}" required="true" 
+                                <p:inputText value="#{bemployee.employee.registration}" required="false" 
                                              requiredMessage="Informe o Número de Inscrição." style="text-transform:uppercase"/>
-                                
+
                                 <h:outputText value="IMEI Mobile:" />
-                                <p:inputText value="#{bemployee.employee.imeiMobile}" required="true" 
+                                <p:inputText value="#{bemployee.employee.imeiMobile}" required="false" 
                                              requiredMessage="Informe o IMEI do Mobile." style="text-transform:uppercase"/>
 
-                                <h:outputText value="Senha Mobile: " />
+                                <h:outputText value="Senha Mobile: *" />
                                 <p:password id="nonFeedback" value="#{bemployee.employee.passwordMobile}"
-                                            required="true" requiredMessage="Informe a Senha do Mobile"/>
+                                            required="false" requiredMessage="Informe a Senha do Mobile"/>
 
-                                <h:outputText value="Tipo: " />
-                                <p:selectOneButton value="#{bemployee.employee.type}" required="true"
+                                <h:outputText value="Tipo: *" />
+                                <p:selectOneButton value="#{bemployee.employee.type}" required="false"
                                                    requiredMessage="Informe o Tipo do Funcionário">
                                     <f:selectItem itemLabel="Agente" itemValue="A" />
                                     <f:selectItem itemLabel="Supervisor" itemValue="S" />
                                 </p:selectOneButton>
 
                             </h:panelGrid>
-                        </p:panel>
-                    </p:tab>
+                        </p:tab>
 
-                </p:tabView>
+                    </p:tabView>
+                    <br />
+                    <p:commandButton class="btn btn-large btn-success" id="Linha1" action="#{bemployee.save}" value="Salvar"/>
+                    <p:commandButton class="btn btn-large btn-danger" value="Cancelar" action="/limited/employeelist.jsf"/>                
 
-                <br />
-                <p:commandButton action="#{bemployee.save}" value="Salvar" ajax="false"/>
+                </p:panel>
+
+
 
             </h:form>
 

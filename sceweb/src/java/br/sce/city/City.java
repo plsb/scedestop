@@ -33,6 +33,10 @@ public class City implements Serializable{
     private String state;
     
     private boolean active;
+    
+    private double latitude;
+    
+    private double longitude;
 
     public Integer getId() {
         return id;
@@ -110,5 +114,23 @@ public class City implements Serializable{
 
     
     private static final long serialVersionUID = -5555525529389378830L;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+    
+    
     
 }

@@ -19,31 +19,36 @@
         <ui:define name="body">
 
             <h:form id="register">
-
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:inputHidden value="#{bstreet.street.id}"/>
 
-                <h:panelGrid columns="1">
-                    <p:outputLabel value="Código do Quarteirão:" for="code" />
-                    <p:inputText id="code" label="Código" size="10"
-                                 maxlength="50" required="true" value="#{bstreet.street.idQuarter}"
-                                 requiredMessage="Informe o Código do Quarteirão." style="text-transform:uppercase">
-                    </p:inputText>				
+                <p:panel id="basic" header="Cadastro/Edição de Ruas" style="margin-bottom:20px">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Código do Quarteirão: *" for="code" />
+                        <p:inputText id="code" label="Código" size="10"
+                                     maxlength="50" required="false" value="#{bstreet.street.idQuarter}"
+                                     requiredMessage="Informe o Código do Quarteirão." style="text-transform:uppercase">
+                        </p:inputText>				
 
-                    <p:outputLabel value="Descrição da Rua:" for="description" />
-                    <p:inputText id="description" label="Descrição" size="100"
-                                 maxlength="50" required="true" value="#{bstreet.street.description}"
-                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase">
-                    </p:inputText>	
-                    <p:outputLabel value="Bairro: " for="district"/>
-                    <p:selectOneMenu id="district" value="#{bstreet.street.district}" required="true" 
-                                     requiredMessage="Informe o Bairro.">
-                        <f:selectItem itemLabel=" " itemValue="" />
-                        <f:selectItems  value="#{bstreet.districtSelect}"/>					 			
-                    </p:selectOneMenu> 
-                    
-                </h:panelGrid>
-                <br />
-                <p:commandButton action="#{bstreet.save}" value="Salvar" ajax="false"/>
+                        <p:outputLabel value="Descrição da Rua: *" for="description" />
+                        <p:inputText id="description" label="Descrição" size="100"
+                                     maxlength="50" required="false" value="#{bstreet.street.description}"
+                                     requiredMessage="Informe a Descrição." style="text-transform:uppercase">
+                        </p:inputText>	
+                        <p:outputLabel value="Bairro: *" for="district"/>
+                        <p:selectOneMenu id="district" value="#{bstreet.street.district}" required="false" 
+                                         requiredMessage="Informe o Bairro." style="width:300px">
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItems  value="#{bstreet.districtSelect}"/>					 			
+                        </p:selectOneMenu> 
+
+                    </h:panelGrid>
+                    <br />
+                    <p:commandButton action="#{bstreet.save}" value="Salvar" ajax="false"/>
+                    <p:commandButton class="btn btn-large btn-danger" value="Cancelar" action="/limited/streetlist.jsf"/>
+
+                </p:panel>
+
 
             </h:form>
 

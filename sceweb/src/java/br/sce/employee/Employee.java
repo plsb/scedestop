@@ -82,6 +82,13 @@ public class Employee implements Serializable{
     public boolean getActive() {
         return active;
     }
+    
+    public String getActiveText() {
+        if(active)
+            return "Ativo";
+        else 
+            return "Inativo";
+    }
 
     public void setActive(boolean active) {
         this.active = active;

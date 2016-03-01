@@ -6,22 +6,22 @@
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://srv07.brasilwork.com.br:3306/mlsksywb_endemics</property>
-        <property name="connection.username">mlsksywb_endemic</property>
-        <property name="connection.password">12345endemics12345</property>
-        <property name="current_session_context_class">thread</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sce</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        <!--<property name="current_session_context_class">thread</property>-->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="generate_statistics">true</property>
         <property name="use_sql_coments">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <!-- configuration pool via c3p0-->   
-        <!--<property name="hibernate.c3p0.acquire_increment">10</property>  
+        <!-- configuration pool via c3p0-->
+        <property name="hibernate.c3p0.acquire_increment">10</property>  
         <property name="hibernate.c3p0.timeout">1800</property>  
         <property name="hibernate.c3p0.idle_test_period">60</property>  
         <property name="hibernate.c3p0.max_size">100</property>  
         <property name="hibernate.c3p0.max_statements">50</property>  
-        <property name="hibernate.c3p0.min_size">5</property>-->
+        <property name="hibernate.c3p0.min_size">5</property>   
         <!-- fim configuration pool via c3p0-->          
         <mapping class="br.sce.area.Area"/>
         <mapping class="br.sce.city.City"/>
@@ -32,6 +32,8 @@
         <mapping class="br.sce.team.Team"/>
         <mapping class="br.sce.user.User"/>
         <mapping class="br.sce.user.User"/>
+        <mapping class="br.sce.visit.Visit"/>
+        <mapping class="br.sce.sample.Sample"/>
         
     </session-factory>
 </hibernate-configuration>

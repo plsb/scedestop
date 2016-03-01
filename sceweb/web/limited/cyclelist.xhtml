@@ -23,7 +23,9 @@
                 </h:commandLink>
 
                 <p:dataTable id="tbl" value="#{bcycle.list}" var="cycle"
-                             paginator="true" rows="10">
+                             rows="10"
+                             paginator="true"
+                             >
 
                     <p:column id="description"
                               headerText="Descrição" filterBy="#{cycle.description}">
@@ -31,13 +33,13 @@
                         <h:outputText
                             value="#{cycle.description}" />
                     </p:column>
-                    <p:column id="startdate" headerText="Data Inicio">
-                              <f:facet name="header">Data Inicio</f:facet>
+                    <p:column id="startdate" headerText="Data Inicio" style="width:150px" filterBy="#{cycle.startDate}">
+                        <f:facet name="header">Data Inicio</f:facet>
                         <h:outputText
                             value="#{cycle.startDate}" />
                     </p:column>
-                    <p:column id="enddate" headerText="Data Fim">
-                              <f:facet name="header">Data Fim</f:facet>
+                    <p:column id="enddate" headerText="Data Fim" style="width:150px" filterBy="#{cycle.endDate}">
+                        <f:facet name="header">Data Fim</f:facet>
                         <h:outputText
                             value="#{cycle.endDate}" />
                     </p:column>
@@ -47,7 +49,7 @@
                             value="#{cycle.city.description} - #{cycle.city.state}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bcycle.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
@@ -58,7 +60,7 @@
                         </h:commandLink>
 
                     </p:column>
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bcycle.remove}"
                                        onclick="if (!confirm('Confirma a exclusão do Ciclo ?'))

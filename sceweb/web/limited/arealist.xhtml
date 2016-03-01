@@ -13,31 +13,49 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <h:form >
+                
+                <h:panelGrid columns="4" >
+                    <!--<p:outputLabel value="Pesquisar por Descrição: " for="description"/>
+                    <p:inputText id="description" label="Descrição" size="50"
+                                 maxlength="50" required="false" value="#{barea.descricaoPesquisa}"
+                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase"
+                                 class="form-control">
+                    </p:inputText>				
+                    <h:commandLink>
+                        <h:graphicImage library="pictures" name="pesquisapeq.png"
+                                        style="border:0" title="Pesquisar Área" />
+                    </h:commandLink>-->
 
+                    <h:commandLink action="#{barea.newArea}">
+                        <h:graphicImage library="pictures" name="insert.png"
+                                        style="border:0" title="Inserir Área" />
+                    </h:commandLink>
 
-
-                <h:commandLink action="#{barea.newArea}">
-                    <h:graphicImage library="pictures" name="insert.png"
-                                    style="border:0" title="Inserir Área" />
-                </h:commandLink>
+                </h:panelGrid>
 
                 <p:dataTable id="tbl" value="#{barea.list}" var="area"
-                             paginator="true" rows="10">
+                             scrollHeight="200"
+                             rows="10"
+                         paginator="true"
+
+                             >
+                    <f:facet name="header">
+                        Lista de Áreas
+                    </f:facet>
 
                     <p:column id="description"   
-                              headerText="Descrição" filterBy="#{area.description}">
-                        <f:facet name="header">Descrição</f:facet>
+                              headerText="Descrição" filterBy="#{area.description}">                       
                         <h:outputText
                             value="#{area.description}" />
                     </p:column>
-                    <p:column id="city" headerText="Cidade">
-                        <f:facet name="header">Cidade</f:facet>
+                    <p:column id="city" headerText="Cidade" style="width:250px">
                         <h:outputText
                             value="#{area.city.description} - #{area.city.state}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{barea.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
@@ -48,10 +66,10 @@
                         </h:commandLink>
 
                     </p:column>
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{barea.remove}"
-                                       onclick="if (!confirm('Confirma a exclusão de Área ?'))
+                                       onclick="if (!confirm('Confirma a exclusão da Área ?'))
                                                    return false;"
                                        title="Excluir Área">
                             <h:graphicImage library="pictures" name="remove.png"

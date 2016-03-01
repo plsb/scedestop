@@ -5,51 +5,61 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:p="http://primefaces.org/ui"> 
-    <h:head> 
-
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <title><ui:insert name="titulo">endemics</ui:insert></title> <!-- (2) -->
+    <h:head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>sisen</title>
         <h:outputStylesheet library="css" name="style.css"/>
-        <style type="text/css"><!--
-            #logo {
-                text-align: left; 
-                float: left;
-            } -->
-        </style>  
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    </h:head>
+    <body>
+        <!-- Header -->
+        <div id="header">
+            <div class="shell">
+                <!-- Logo + Top Nav -->
+                <div id="top">
+                    <h1>Controle de Endemias</h1>
+                    <div id="top-navigation">
+                        Bem Vindo, <p:outputLabel value=" #{contextBean.user.name}!"  /><!--<a href="#"><strong>Administrator</strong></a>-->
+                        <!--<span>|</span>
+                        <a href="#">Help</a>
+                        <span>|</span>
+                        <a href="#">Profile Settings</a>
+                        <span>|</span>-->
+                        <a href="document.location='#{request.contextPath}/j_spring_security_logout" >Sair</a>
+                    </div>
+                </div>
+                <!-- End Logo + Top Nav -->
 
-    </h:head> 
-    <h:body> 
-        <div id="container">
-            
-                
-            <div id="title">
-                <ui:insert name="title">endemics</ui:insert>
-            </div>
-            <div id="logo">
-                <h:graphicImage library="pictures" name="newlogo.png"/> 
-            </div>
-            <div id="menu">
-                <ui:insert name="menu">
-                    <ui:include src="/public/menu.xhtml"/>
-                </ui:insert>  
-            </div>
-            <div id="body">
-                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                <ui:insert name="body"/>
-            </div>
-            <div id="footer">
-                <ui:insert name="footer">
-                    Usuário Logado: 
-                    <p:outputLabel value="#{contextBean.user.name}"  />
-                    <br />
-                    Cidade:
-                    <p:outputLabel value="#{contextBean.user.city.description} - #{contextBean.user.city.state}"  />
-                     <br />
-                    endemics versão 1.0 -  Copyright © 2015                    
-                    <br />
-                </ui:insert> 
+                <!-- Main Nav -->
+                <div id="navigation">
+                    <ui:insert name="menu">
+                        <ui:include src="/public/menu.xhtml"/>
+                    </ui:insert>  
+                </div>
+                <!-- End Main Nav -->
             </div>
         </div>
-    </h:body>
-</html>
+        <!-- End Header -->
+        <div id="container">
 
+            <div id="body2">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <ui:insert name="body"/>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="shell">
+                <span class="left">&copy; 2016 v 1.0- CompanyName</span>
+                <span class="right">
+                    Cidade: <p:outputLabel value="#{contextBean.user.city.description} - #{contextBean.user.city.state}"  />
+                </span>
+            </div>
+        </div>
+        <!-- End Footer -->
+
+    </body>
+</html>

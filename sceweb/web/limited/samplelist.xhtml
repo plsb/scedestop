@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Amostras
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="visita"  class="navbar-form navbar-left" >
+
+                <h:panelGrid columns="3">
+                    <p:outputLabel for="console" value="Ciclo: " />
+                    <p:selectOneMenu id="console" value="#{bsample.cycle}" style="width:300px" required="true"
+                                     requiredMessage="Informe o ciclo!" class="form-control">
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bsample.cycleSelect}"/>					 			
+                    </p:selectOneMenu>
+
+                    <h:commandLink action="#{bsample.pesquisa}" >
+                        <h:graphicImage library="pictures" name="pesquisapeq.png"
+                                        style="border:0" title="Pesquisar Ciclo" />
+                    </h:commandLink>
+                </h:panelGrid> 
+                <h:panelGrid columns="6">
+                    <h:graphicImage library="pictures"
+                                            name="circulo_1.png" style="border:0" />
+                    <p:outputLabel value="Amostra confirmada"/>
+                    
+                    <h:graphicImage library="pictures"
+                                            name="circulo_0.png" style="border:0" />
+                    <p:outputLabel value="Amostra não confirmada"/>
+                    
+                    <h:graphicImage library="pictures"
+                                            name="circulo_2.png" style="border:0" />
+                    <p:outputLabel value="Amostra a ser analisada"/>
+                </h:panelGrid>
+                <p:outputPanel>
+
+                    <p:dataTable id="tbl" value="#{bsample.list}" var="sample"
+                                 paginator="true" rows="10">
+                        
+                        <p:column>
+                            <h:graphicImage library="pictures"
+                                            name="circulo_#{sample.confirmada}.png" style="border:0" />
+                        </p:column>
+
+                        <p:column id="data"   resizable="true" 
+                                  headerText="Data" filterBy="#{sample.visit.data}" 
+                                  >
+                            <f:facet name="header">Data</f:facet>
+                            <h:outputText
+                                value="#{sample.visit.data}" />
+                        </p:column>
+
+                        <p:column id="localidade" resizable="true"  
+                                  headerText="Localidade" filterBy="#{sample.visit.street.description}">
+                            <f:facet name="header">Localidade</f:facet>
+                            <h:outputText
+                                value="#{sample.visit.street.description}, #{sample.visit.numero} - #{sample.visit.complemento}" />
+                        </p:column>
+
+                        <p:column id="agente"   resizable="true"
+                                  headerText="Agente" filterBy="#{sample.visit.agente.name}">
+                            <f:facet name="header">Agente</f:facet>
+                            <h:outputText
+                                value="#{sample.visit.agente.name}" />
+                        </p:column>
+
+                        <p:column id="numamostra" resizable="true"  
+                                  headerText="Num Amostra" filterBy="#{sample.numAmostra}">
+                            <f:facet name="header">Num. Amostra</f:facet>
+                            <h:outputText
+                                value="#{sample.numAmostra}" />
+                        </p:column>
+
+
+                        <p:column id="deposito"   resizable="true"
+                                  headerText="Depósito" filterBy="#{sample.deposito}">
+                            <f:facet name="header">Depósito</f:facet>
+                            <h:outputText
+                                value="#{sample.deposito}" />
+                        </p:column>
+
+                        <p:column id="numLavas"   resizable="true"
+                                  headerText="Num. Lavas" filterBy="#{sample.numLavas}">
+                            <f:facet name="header">Qtd.Lavas</f:facet>
+                            <h:outputText
+                                value="#{sample.numLavas}" />
+                        </p:column>
+
+                        <p:column>
+
+                            <h:commandLink action="#{bsample.edit}">
+                                <h:graphicImage library="pictures" name="visualizar.gif"
+                                                style="border:0" title="Editar Amostra" />
+                                <f:setPropertyActionListener target="#{bsample.sample}"
+                                                             value="#{sample}" />
+
+                            </h:commandLink>
+
+                        </p:column>
+
+                    </p:dataTable>
+                </p:outputPanel>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

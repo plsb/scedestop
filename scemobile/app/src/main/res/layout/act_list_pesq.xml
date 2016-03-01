@@ -27,10 +27,9 @@
                     android:id="@+id/edtFiltro"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:hint="Nº Quarteirão"
-                    android:inputType="number" />
+                    android:hint="Rua" />
 
             </TableRow>
 
@@ -41,8 +40,14 @@
         <Button
             android:id="@+id/btnFiltrar"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="43dp"
             android:drawableTop="@drawable/pesquisapeq"
+            style="@style/DashboardButton"/>
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:drawableTop="@drawable/voltapeq"
             style="@style/DashboardButton"/>
 
     </LinearLayout>

@@ -19,7 +19,7 @@ import sce.br.model.Mensagem;
 
 public class ActStreet extends ListActivity implements View.OnClickListener {
 
-    TextView TvNome,TvBairro;
+    TextView TvNome,TvBairro, btVolta;
     private Button btnFiltrar;
     private EditText edtFiltro;
     Object o;
@@ -36,16 +36,18 @@ public class ActStreet extends ListActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_list_street);
+        setContentView(R.layout.act_list_pesq);
         btnFiltrar = (Button) findViewById(R.id.btnFiltrar);
         btnFiltrar.setOnClickListener(this);
+        btVolta = (Button) findViewById(R.id.btnVoltar);
+        btVolta.setOnClickListener(this);
         edtFiltro = (EditText) findViewById(R.id.edtFiltro);
-
+        edtFiltro.setHint("Cód. Quarteirão");
         _bd.open();
         logradouro =  _bd.consult("street", new String[]{"count(*)"}, null, null, null, null, null, null);
         logradouro.moveToFirst();
         if(logradouro.getCount()==0){
-            Mensagem.exibeMessagem(ActStreet.this, "endmeics", "Não Existe Ruas!");
+            Mensagem.exibeMessagem(ActStreet.this, "endemics", "Não Existe Ruas!");
         }
         listarQuarteiroes(false);
     }
@@ -102,6 +104,11 @@ public class ActStreet extends ListActivity implements View.OnClickListener {
     public void onClick(View v) {
         if (v == btnFiltrar) {
             listarQuarteiroes(true);
+        } else if(v==btVolta){
+//            ActMainActivity.mostraContagemAImportar(ActStreet.this);
+//            Intent i = new Intent(ActStreet.this,ActMainActivity.class);
+            finish();
+//            startActivity(i);
         }
     }
 
@@ -133,5 +140,11 @@ public class ActStreet extends ListActivity implements View.OnClickListener {
                 });
         dialog.setTitle("Opções");
         dialog.show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

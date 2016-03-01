@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class Database {
 
@@ -57,7 +58,7 @@ public class Database {
 
     private class DatabaseHelper extends SQLiteOpenHelper {
 
-        private static final int DATABASE_VERSION = 14;
+        private static final int DATABASE_VERSION = 24;
         private static final String DATABASE_NAME = "endemics";
 
         private static final String TB_USER = "CREATE TABLE if not exists USER " +
@@ -81,8 +82,8 @@ public class Database {
                 "dtstart text NOT NULL,dtfim text NOT NULL);";
 
         private static final String TB_VISIT= "CREATE TABLE if not exists visit (_ID text PRIMARY KEY NOT NULL,"
-                + "VIS_IDRUA INTEGER ," + "VIS_NUMERO INTEGER ," + "CICLO INTEGER ,"
-                + "VIS_COMPLEMENTO TEXT,"			 + "VIS_TIPO_IMOVEL TEXT,"
+                + "VIS_IDRUA INTEGER ," + "VIS_NOMERUA TEXT ,"+ "VIS_NUMERO INTEGER ," + "CICLO string ,"
+                + "VIS_COMPLEMENTO TEXT,"			 + "VIS_TIPO_IMOVEL TEXT,"+ "VIS_TIPO_VISITA TEXT,"
                 + "VIS_HORA TEXT,"
                 + "VIS_PNEU integer," 					 + "VIS_TANQUE integer,"
                 + "VIS_TAMBOR integer," 				 + "VIS_BARRIL integer,"
@@ -97,14 +98,16 @@ public class Database {
                 + "VIS_ARMADILHA integer,"				 + "VIS_POOL integer,"
                 + "VIS_TIPO_ATIVIDADE TEXT,"		 + "VIS_COD_DOENCA TEXT ,"
                 + "VIS_RESPONSAVEL TEXT,"   		 + "VIS_LARVICIDAGT TEXT,"+ "VIS_LARVICIDAML TEXT,"
-                + "VIS_DATA TEXT,"					 + "VIS_AGENTE integer, "
+                + "VIS_DATA TEXT,"+ "VIS_DATA_RECUPERADA TEXT," + "VIS_AGENTE integer, "
                 + "VIS_DEP_TRATADOS_FOCAL integer,"
                 + "VIS_DEP_TRATADOS_PERIFOCAL integer," + "VIS_TIPO_LARVICIDA TEXT,"
                 + "VIS_RALO integer,"					  + "VIS_PISCINA integer,"  + "VIS_OBS TEXT,"
+                + "VIS_LATITUDE TEXT,"
+                + "VIS_LONGITUDE TEXT,"
                 + "VIS_DEP_ELIMINADOS integer, FOIIMPORTADO INTEGER DEFAULT 0);";
 
         private static final String TB_AMOSTRA = "CREATE TABLE if not exists amostra (_ID integer PRIMARY KEY autoincrement NOT NULL," +
-                "NUM_AMOSTRA INTEGER NOT NULL,ID_VISIT text NOT NULL," +
+                "NUM_AMOSTRA INTEGER NOT NULL, ID_VISIT text NOT NULL,ID_CICLO int NOT NULL," +
                 " DEPOSITO TEXT NOT NULL, " +
                 "NUM_LAVAS INTEGER NOT NULL, FOIEXPORTADO INTEGER DEFAULT 0);";
 

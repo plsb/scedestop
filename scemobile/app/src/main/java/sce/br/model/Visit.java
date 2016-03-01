@@ -9,13 +9,15 @@ public class Visit {
     private String tipoImovel;
     private String tipoAtividade;
     private int idrua;
+    private String nomerua;
     private int idciclo;
     private int idagente;
     private String numeroResidencia;
     private String complemento;
     private String doenca;
     private String responsavel;
-    private String hora, data;
+    private String hora, data, dataRecuperada;
+    private double latitude, longitude;
 
     private int Tpneu, Ttanque, Ttambor, Tbarril, Ttina, Tpote, Tfiltro,
     Tquartinha, Tvaso, TmatConst, TpecaCarro, Tgarrafa, Tlata,
@@ -374,5 +376,37 @@ public class Visit {
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public String getDataRecuperada() {
+        return dataRecuperada;
+    }
+
+    public void setDataRecuperada(String dataRecuperada) {
+        this.dataRecuperada = dataRecuperada;
+    }
+
+    public String getNomerua() {
+        return nomerua;
+    }
+
+    public void setNomerua(String nomerua) {
+        this.nomerua = nomerua;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

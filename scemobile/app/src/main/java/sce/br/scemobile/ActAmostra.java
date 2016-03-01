@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import sce.br.dao.Database;
 import sce.br.model.Amostra;
 import sce.br.model.Mensagem;
+import sce.br.util.Ativo;
 
 /**
  * Created by Pedro Saraiva on 06/10/2015.
@@ -62,19 +63,27 @@ public class ActAmostra extends Activity implements View.OnClickListener{
             } else if(numlavas.getText().toString().equals("")){
                 Mensagem.exibeMessagem(ActAmostra.this,"endemics","Informe o Número de Lavas");
             } else {
-                try {
-                    db.open();
-                    ContentValues cvAmostra = new ContentValues();
-                    cvAmostra.put("NUM_AMOSTRA", codigo.getText().toString().equals(""));
-                    cvAmostra.put("DEPOSITO", deposito);
-                    cvAmostra.put("ID_VISIT", codVisita);
-                    cvAmostra.put("NUM_LAVAS", numlavas.getText().toString().equals(""));
+                if(codigo.getText().toString().equals("") || codigo.getText().toString().equals("0")){
+                    Mensagem.exibeMessagem(ActAmostra.this,"endemics","Informe o código da amostra!");
+                } else if(numlavas.getText().toString().equals("") || numlavas.getText().toString().equals("")){
+                    Mensagem.exibeMessagem(ActAmostra.this,"endemics","Informe o número de lavas!");
+                } else {
+                    try {
+                        db.open();
+                        ContentValues cvAmostra = new ContentValues();
+                        cvAmostra.put("NUM_AMOSTRA", codigo.getText().toString());
+                        cvAmostra.put("DEPOSITO", deposito);
+                        cvAmostra.put("ID_VISIT", codVisita);
+                        cvAmostra.put("ID_CICLO", Ativo.getCycle().getId());
+                        cvAmostra.put("NUM_LAVAS", numlavas.getText().toString());
+                        db.insert("amostra", cvAmostra);
 
-                    Toast.makeText(ActAmostra.this, "Amostra Cadastrada Com Sucesso!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e){
-                    Mensagem.exibeMessagem(ActAmostra.this,"endemics", "Falha ao salvar Amostra!");
+                        Toast.makeText(ActAmostra.this, "Amostra Cadastrada Com Sucesso!", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Mensagem.exibeMessagem(ActAmostra.this, "endemics", "Falha ao salvar Amostra!");
+                    }
+                    finish();
                 }
-                finish();
 
             }
 
@@ -132,5 +141,11 @@ public class ActAmostra extends Activity implements View.OnClickListener{
 
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

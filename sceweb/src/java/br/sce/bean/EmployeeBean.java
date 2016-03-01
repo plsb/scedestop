@@ -40,8 +40,19 @@ public class EmployeeBean {
         this.employee = employee;
     }
 
-    
-    public String save() {               
+    public String save() {
+        if(employee.getPasswordMobile()==null){
+            employee.setPasswordMobile("");
+        }
+        if (employee.getName()==null || employee.getCpf()==null || employee.getRg()==null
+                || employee.getGenre()=='\0' || employee.getAddress()==null ||  employee.getCity()==null
+                || employee.getDistrict()==null || employee.getState()==null || employee.getCep()==null
+                || employee.getDateOfBirth()==null || employee.getPhone()==null || employee.getPasswordMobile().equals("")
+                || employee.getType()=='\0') {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
+
         employee.setCityRegister(UsuarioAtivo.getUser().getCity());
         employee.setName(employee.getName().toUpperCase());
         employee.setAddress(employee.getAddress().toUpperCase());
@@ -52,8 +63,8 @@ public class EmployeeBean {
         employee.setPhone(employee.getPhone().replaceAll("[.-]", ""));
         employee.setCep(employee.getCep().replaceAll("[.-]", ""));
         employee.setPasswordMobile(Util.md5(employee.getPasswordMobile()));
-        if(!Util.CPF(employee.getCpf())){
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"CPF Inválido!", ""));
+        if (!Util.CPF(employee.getCpf())) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido!", ""));
             return null;
         }
         if (employee.getId() == 0) {
@@ -61,13 +72,12 @@ public class EmployeeBean {
             dEmployee.add(employee);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + employee.getName(), ""));
-            
-            
+
         } else {
             dEmployee.update(employee);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
                     + employee.getName(), ""));
-            
+
         }
 
         return "/limited/employeelist.jsf";
@@ -95,11 +105,11 @@ public class EmployeeBean {
         this.list = dEmployee.list();
         return null;
     }
-    
+
     private boolean skip;
 
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
-    
+
 }

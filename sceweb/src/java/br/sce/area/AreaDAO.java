@@ -10,6 +10,7 @@ import br.sce.util.HibernateUtil;
 import br.sce.util.UsuarioAtivo;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import scs.web.ContextBean;
@@ -18,12 +19,12 @@ import scs.web.ContextBean;
  *
  * @author Pedro Saraiva
  */
-public class AreaDAO extends GenericDAO<Area>{
+public class AreaDAO extends GenericDAO<Area> {
 
     public AreaDAO() {
         super(Area.class);
     }
-    
+
     public List<Area> list() {
         List<Area> lista = null;
         try {
@@ -32,7 +33,7 @@ public class AreaDAO extends GenericDAO<Area>{
             lista = this.getSessao().createCriteria(Area.class).
                     add(Restrictions.eq("city", UsuarioAtivo.getUser().getCity())).
                     addOrder(Order.asc("description")).list();
-            
+
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
@@ -43,6 +44,28 @@ public class AreaDAO extends GenericDAO<Area>{
         }
         return lista;
     }
-    
-    
+
+    public List<Area> pesquisarArea(String campo, String valor) {
+        List<Area> lista = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            lista = this.getSessao().createCriteria(Area.class).
+                    add(Restrictions.like(campo, valor, MatchMode.START)).
+                    add(Restrictions.eq("city", UsuarioAtivo.getUser().getCity())).
+                    addOrder(Order.asc("description")).
+                    list();
+
+        } catch (Throwable e) {
+            if (getTransacao().isActive()) {
+                getTransacao().rollback();
+            }
+            JOptionPane.showMessageDialog(null, "Não foi possível listar: " + e.getMessage());
+        } finally {
+            getSessao().close();
+        }
+        return lista;
+
+    }
+
 }

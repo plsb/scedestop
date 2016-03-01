@@ -23,20 +23,29 @@
                 </h:commandLink>
 
                 <p:dataTable id="tbl" value="#{bemployee.list}" var="employee"
-                             paginator="true" rows="10">
+                             rows="10"
+                             paginator="true"
+                         >
 
+                    
+                    <p:column id="active"
+                              style="width:70px" >
+                        <f:facet name="header"></f:facet>
+                        <h:outputText
+                            value="#{employee.activeText}" />
+                    </p:column>
                     <p:column id="name"
                               headerText="Nome" filterBy="#{employee.name}">
                         <f:facet name="header">Nome</f:facet>
                         <h:outputText
                             value="#{employee.name}" />
                     </p:column>
-                    <p:column id="cpf" headerText="CPF">
+                    <p:column id="cpf" headerText="CPF" style="width:100px">
                               <f:facet name="header">CPF</f:facet>
                         <h:outputText
                             value="#{employee.cpf}" />
                     </p:column>
-                    <p:column id="type" headerText="Tipo">
+                    <p:column id="type" headerText="Tipo" style="width:25px">
                               <f:facet name="header">Tipo</f:facet>
                         <h:outputText
                             value="#{employee.type}" />
@@ -49,7 +58,7 @@
                     </p:column>
                     
 
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bemployee.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
@@ -60,7 +69,7 @@
                         </h:commandLink>
 
                     </p:column>
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bemployee.remove}"
                                        onclick="if (!confirm('Confirma a exclusão do Funcionário ?'))

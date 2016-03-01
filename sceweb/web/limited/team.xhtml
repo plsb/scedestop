@@ -18,31 +18,34 @@
 
         <ui:define name="body">
 
-            <h:form id="register">
-
+            <h:form id="register" class="navbar-form navbar-left" >
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:inputHidden value="#{bteam.team.id}"/>
 
-                <h:panelGrid columns="1">
-                    <p:outputLabel for="master" value="Supervisor:" />
-                    <p:selectOneMenu id="master" value="#{bteam.team.master}" required="true"
-                                      requiredMessage="Informe o Supervisor">
-                        <f:selectItem itemLabel=" " itemValue="" />
-                        <f:selectItems  value="#{bteam.employeeMasterSelect}"/>					 			
-                    </p:selectOneMenu>
-                    
-                    <p:outputLabel for="supervised" value="Supervisionado:" />
-                    <p:selectOneMenu id="supervised" value="#{bteam.team.supervised}" required="true"
-                                      requiredMessage="Informe o Supervisionado">
-                        <f:selectItem itemLabel=" " itemValue="" />
-                        <f:selectItems  value="#{bteam.employeeSupervisedSelect}"/>					 			
-                    </p:selectOneMenu>
-                                        
-                </h:panelGrid>
+                <p:panel id="basic" header="Cadastro/Edição de Equipes" style="margin-bottom:20px">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel for="master" value="Supervisor: *" />
+                        <p:selectOneMenu id="master" value="#{bteam.team.master}" required="false"
+                                         requiredMessage="Informe o Supervisor" style="width:300px">
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItems  value="#{bteam.employeeMasterSelect}"/>					 			
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="supervised" value="Supervisionado: *" />
+                        <p:selectOneMenu id="supervised" value="#{bteam.team.supervised}" required="false"
+                                         requiredMessage="Informe o Supervisionado" style="width:300px">
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItems  value="#{bteam.employeeSupervisedSelect}"/>					 			
+                        </p:selectOneMenu>
+
+                    </h:panelGrid>
+                </p:panel>
                 <br />
                 <p:commandButton action="#{bteam.save}" value="Salvar" ajax="false"/>
+                <p:commandButton class="btn btn-large btn-danger" value="Cancelar" action="/limited/teamlist.jsf"/>
 
             </h:form>
-            
+
         </ui:define>
     </ui:composition>
 </html>

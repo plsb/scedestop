@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Visitas
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="visita" class="navbar-form navbar-left" >
+
+                <h:panelGrid columns="3">
+                    <p:outputLabel for="console" value="Ciclo: " />
+                    <p:selectOneMenu id="console" value="#{bvisit.cycle}" style="width:300px" required="true"
+                                     requiredMessage="Informe o ciclo!" class="form-control">
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bvisit.cycleSelect}"/>					 			
+                    </p:selectOneMenu>
+
+                    <h:commandLink action="#{bvisit.pesquisa}" >
+                        <h:graphicImage library="pictures" name="pesquisapeq.png"
+                                        style="border:0" title="Pesquisar Ciclo" />
+                    </h:commandLink>
+                </h:panelGrid> 
+                <p:outputPanel>
+
+                    <p:dataTable id="tbl" value="#{bvisit.list}" var="visit"
+                                 paginator="true" rows="15">
+
+                        <p:column id="data"   resizable="true"
+                                  headerText="Data" filterBy="#{visit.data}">
+                            <f:facet name="header">Data</f:facet>
+                            <h:outputText
+                                value="#{visit.data}" />
+                        </p:column>
+
+                        <p:column id="localidade" resizable="true"  
+                                  headerText="Localidade" filterBy="#{visit.street.description}">
+                            <f:facet name="header">Localidade</f:facet>
+                            <h:outputText
+                                value="#{visit.street.description}, #{visit.numero} - #{visit.complemento}" />
+                        </p:column>
+
+                        <p:column id="tipovisita" resizable="true"  
+                                  headerText="Tipo Visita" filterBy="#{visit.tipoVisita}">
+                            <f:facet name="header">Tipo Visita</f:facet>
+                            <h:outputText
+                                value="#{visit.tipoVisita}" />
+                        </p:column>
+
+
+                        <p:column id="tipoimovel"   resizable="true"
+                                  headerText="Tipo Imóvel">
+                            <f:facet name="header">Tipo Imóvel</f:facet>
+                            <h:outputText
+                                value="#{bvisit.tipoImovel(visit.tipoImovel)}" />
+                        </p:column>
+
+                        <p:column id="agente"   resizable="true"
+                                  headerText="Agente" filterBy="#{visit.agente.name}">
+                            <f:facet name="header">Agente</f:facet>
+                            <h:outputText
+                                value="#{visit.agente.name}" />
+                        </p:column>
+
+                        <p:column>
+
+                            <h:commandLink action="/limited/visit?faces-redirect=true">
+                                <h:graphicImage library="pictures" name="visualizar.gif"
+                                                style="border:0" title="Visualizar Visita" />
+                                <f:setPropertyActionListener target="#{bvisit.visit}"
+                                                             value="#{visit}" />
+
+                            </h:commandLink>
+
+                        </p:column>
+
+                    </p:dataTable>
+                </p:outputPanel>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

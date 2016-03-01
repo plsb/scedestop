@@ -13,15 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import sce.br.dao.Database;
 import sce.br.model.Amostra;
+import sce.br.model.InsereVisita;
 import sce.br.model.Mensagem;
 import sce.br.model.Visit;
+import sce.br.util.GPSTracker;
 
 public class ActVisitLast extends Activity implements View.OnClickListener{
+
+    private static int operacao=0;
 
     private static Visit visit;
     private Button btSalvar, btCancelar, btnAmostras;
@@ -39,7 +44,8 @@ public class ActVisitLast extends Activity implements View.OnClickListener{
 
     private Database db = new Database(ActVisitLast.this);
 
-    public static void show(Visit v, Context ctx){
+    public static void show(Visit v, Context ctx, int ope){
+        operacao = ope;
         ActVisitLast.visit = v;
         Intent i = new Intent(ctx, ActVisitLast.class);
         ctx.startActivity(i);
@@ -141,6 +147,20 @@ public class ActVisitLast extends Activity implements View.OnClickListener{
     }
 
     public void TotalInspecionado() {
+        GPSTracker gps = gps = new GPSTracker(ActVisitLast.this);
+        if(gps.canGetLocation()){
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+            visit.setLatitude(latitude);
+            visit.setLongitude(longitude);
+        }else{
+            // não pôde pegar a localização
+            // GPS ou a Rede não está habilitada
+            // Pergunta ao usuário para habilitar GPS/Rede em configurações
+            Toast.makeText(ActVisitLast.this,"Ative o GPS!",Toast.LENGTH_LONG).show();
+            gps.showSettingsAlert();
+        }
+
         try {
             TPiscina = Integer.valueOf(piscina.getText().toString());
         } catch (Exception e) {
@@ -343,62 +363,17 @@ public class ActVisitLast extends Activity implements View.OnClickListener{
     public void PreparaInsercao() {
         TotalInspecionado();
         db.open();
-        try {
-            ContentValues cvVisit = new ContentValues();
-            cvVisit.put("VIS_IDRUA", visit.getIdrua());
-            cvVisit.put("VIS_NUMERO", Integer.parseInt(visit.getNumeroResidencia()));
-            cvVisit.put("VIS_COMPLEMENTO", visit.getComplemento());
-            cvVisit.put("VIS_TIPO_IMOVEL", visit.getTipoImovel());
-            cvVisit.put("VIS_HORA", visit.getHora());
-            cvVisit.put("VIS_PNEU", visit.getTpneu());
-            cvVisit.put("VIS_TANQUE", visit.getTtanque());
-            cvVisit.put("VIS_TAMBOR", visit.getTtambor());
-            cvVisit.put("VIS_BARRIL", visit.getTbarril());
-            cvVisit.put("VIS_TINA", visit.getTtina());
-            cvVisit.put("VIS_POTE", visit.getTpote());
-            cvVisit.put("VIS_FILTRO", visit.getTfiltro());
-            cvVisit.put("VIS_QUARTINHA", visit.getTquartinha());
-            cvVisit.put("VIS_VASO", visit.getTvaso());
-            cvVisit.put("VIS_MAT_CONSTRUCAO", visit.getTmatConst());
-            cvVisit.put("VIS_PECA_CARRO", visit.getTpecaCarro());
-            cvVisit.put("VIS_GARRAFA", visit.getTgarrafa());
-            cvVisit.put("VIS_LATA", visit.getTlata());
-            cvVisit.put("VIS_DEP_PLASTICO", visit.getTdepPlast());
-            cvVisit.put("VIS_POCO", visit.getTpoco());
-            cvVisit.put("VIS_CISTERNA", visit.getTcisterna());
-            cvVisit.put("VIS_CACIMBA", visit.getTcacimba());
-            cvVisit.put("VIS_CX_DAGUA", visit.getTcxDagua());
-            cvVisit.put("VIS_REC_NATURAL", visit.getTrecNatural());
-            cvVisit.put("VIS_OUTROS", visit.getToutros());
-            cvVisit.put("VIS_ARMADILHA", visit.getTarmadilha());
-            cvVisit.put("VIS_POOL", visit.getTPOOL());
-            cvVisit.put("VIS_TIPO_ATIVIDADE", visit.getTipoAtividade());
-            cvVisit.put("VIS_COD_DOENCA", visit.getDoenca());
-            cvVisit.put("VIS_RESPONSAVEL", visit.getResponsavel());
-            cvVisit.put("VIS_LARVICIDAGT", visit.getLarvicidaGT());
-            cvVisit.put("VIS_LARVICIDAML", visit.getLarvicidaML());
-            cvVisit.put("VIS_DATA", visit.getData());
-            cvVisit.put("VIS_AGENTE", visit.getIdagente());
-            cvVisit.put("VIS_DEP_TRATADOS_FOCAL", visit.getDepTratadosFocal());
-            cvVisit.put("VIS_DEP_TRATADOS_PERIFOCAL", visit.getDepTratadosPerifocal());
-            cvVisit.put("VIS_TIPO_LARVICIDA", visit.getTipoLarvicida());
-            cvVisit.put("VIS_RALO", visit.getTRalo());
-            cvVisit.put("VIS_PISCINA", visit.getTPiscina());
-            cvVisit.put("VIS_OBS", visit.getEdtObs());
-            cvVisit.put("VIS_DEP_ELIMINADOS", visit.getDepEliminados());
-            cvVisit.put("CICLO", visit.getIdciclo());
-            cvVisit.put("FOIIMPORTADO", 0);
-
-            db.insert("visit", cvVisit);
-            Mensagem.exibeMessagem(ActVisitLast.this, "endemics", "Visita salva com sucesso!");
-        } catch (Exception e){
-            Mensagem.exibeMessagem(ActVisitLast.this,"endemics","Não foi possível salvar a visita!");
+        InsereVisita ins = new InsereVisita();
+        if(ins.insereVisita(visit, ActVisitLast.this, operacao)!=-1){
+            Toast.makeText(ActVisitLast.this, "Visita Inserida Com Sucesso!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ActVisitLast.this, "Não foi possível salvar a visita!", Toast.LENGTH_SHORT).show();
         }
 
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(ActVisitLast.this);
         dialog.setMessage("Deseja Realizar outra visita para a mesma Rua? ");
-        dialog.setNegativeButton("Sim", new
+        dialog.setPositiveButton("Sim", new
                 DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface di, int arg) {
@@ -407,7 +382,7 @@ public class ActVisitLast extends Activity implements View.OnClickListener{
                     }
                 });
 
-        dialog.setPositiveButton("Não", new
+        dialog.setNegativeButton("Não", new
                 DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface di, int arg) {
@@ -424,13 +399,16 @@ public class ActVisitLast extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(btCancelar==v){
+            db.execSql("delete from amostra where ID_VISIT="+visit.getCodigo());
             Intent i = new Intent(ActVisitLast.this, ActMainActivity.class);
             finish();
             startActivity(i);
         } else if(btSalvar==v) {
+            ActMainActivity.mostraContagemAImportar(ActVisitLast.this);
             PreparaInsercao();
         } else if(btnAmostras==v){
             ActAmostra.show(ActVisitLast.this,visit.getCodigo());
         }
     }
+
 }

@@ -18,38 +18,46 @@
 
         <ui:define name="body">
 
-            <h:form id="register">
-
+            <h:form id="register" class="navbar-form navbar-left" >
+                
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:inputHidden value="#{bdistrict.district.id}"/>
                 
-                <h:panelGrid columns="1">
-                    <p:outputLabel value="Código do Bairro:" for="code" />
-                    <p:inputText id="code" label="Código" size="10"
-                                 maxlength="50" required="true" value="#{bdistrict.district.districtId}"
-                                 requiredMessage="Informe o Código do Bairro.">
-                    </p:inputText>				
+                <p:panel id="basic" header="Cadastro/Edição de Bairro" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="100" cellspacing="20">
+                        <h:outputLabel value="Código do Bairro: *" for="code" />
+                        <p:inputText id="code" label="Código" size="10"
+                                     maxlength="50" required="false" value="#{bdistrict.district.districtId}"
+                                     requiredMessage="Informe o Código do Bairro."
+                                     class="form-control" >
+                        </p:inputText>			
 
-                    <p:outputLabel value="Descrição do Bairro:" for="description" />
-                    <p:inputText id="description" label="Descrição" size="100"
-                                 maxlength="50" required="true" value="#{bdistrict.district.description}"
-                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase">
-                    </p:inputText>	
-                    <p:outputLabel value="Àrea: " for="area"/>
-                    <p:selectOneMenu id="area" value="#{bdistrict.district.area}" required="true" 
-                                     requiredMessage="Informe a Área.">
-                        <f:selectItem itemLabel=" " itemValue="" />
-                        <f:selectItems  value="#{bdistrict.areaSelect}"/>					 			
-                    </p:selectOneMenu> 
-                    <p:outputLabel for="zone" value="Zona:" />
-                    <p:selectOneRadio id="zone" value="#{bdistrict.district.zone}" required="true"
-                                      requiredMessage="Informe a Zona">
-                        <f:selectItem itemLabel="Urbana" itemValue="U" />
-                        <f:selectItem itemLabel="Rural" itemValue="R" />
-                    </p:selectOneRadio>
+                        <h:outputLabel value="Descrição do Bairro: *" for="description" />
+                        <p:inputText id="description" label="Descrição" size="50"
+                                     maxlength="50" required="false" value="#{bdistrict.district.description}"
+                                     requiredMessage="Informe a Descrição." style="text-transform:uppercase"
+                                     class="form-control">
+                        </p:inputText>	
 
-                </h:panelGrid>
-                <br />
-                <p:commandButton action="#{bdistrict.save}" value="Salvar" ajax="false"/>
+                        <p:outputLabel value="Àrea: *" for="area"/>
+                        <p:selectOneMenu id="area" value="#{bdistrict.district.area}" required="false" 
+                                         requiredMessage="Informe a Área." class="form-control" style="width:200px">
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItems  value="#{bdistrict.areaSelect}"/>					 			
+                        </p:selectOneMenu> 
+
+                        <p:outputLabel for="zone" value="Zona: *" />
+                        <p:selectOneRadio id="zone" value="#{bdistrict.district.zone}" required="false"
+                                          requiredMessage="Informe a Zona" class="input-group">
+                            <f:selectItem itemLabel="Urbana" itemValue="U" class="input-group-btn"/>
+                            <f:selectItem itemLabel="Rural" itemValue="R" class="input-group-btn"/>
+                        </p:selectOneRadio>
+
+                    </h:panelGrid>
+                    <br />
+                    <p:commandButton class="btn btn-large btn-success" id="Linha1" action="#{bdistrict.save}" value="Salvar"/>
+                    <p:commandButton class="btn btn-large btn-danger" value="Cancelar" action="/limited/districtlist.jsf"/>                
+                </p:panel>
 
             </h:form>
 

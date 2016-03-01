@@ -1,43 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:sec="http://www.springframework.org/security/facelets/tags"> 
-    <ui:composition>
-        <h:form>
-            <p:menubar>
-                <p:menuitem value="Home" url="/template/layout.jsf" />
-                <sec:ifAnyGranted roles="ROLE_USER"> 
-                    <p:submenu label="Cadastro" icon="ui-icon-document">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-                        <p:menuitem value="Área" url="/limited/arealist.jsf" />
-                        <p:menuitem value="Bairro" url="/limited/districtlist.jsf" />
-                        <p:menuitem value="Ciclo" url="/limited/cyclelist.jsf" />
-                        <p:submenu label="Funcionário">
-                            <p:menuitem value="Novo" url="/limited/employeelist.jsf" />
-                            <p:menuitem value="Equipe" url="/limited/teamlist.jsf" />
-                        </p:submenu>
-                        <p:menuitem value="Rua" url="/limited/streetlist.jsf" />
+    <h:head>
+        <meta charset='utf-8'/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="css" name="stylesmenu.css"/>
+        <title>event</title> 
+    </h:head> 
+    <body>
+        <div id='cssmenu'>
+            <ul>
+                <li><a href='/sceweb/template/layout.jsf'><span>Inicio</span></a></li>
+                <li class='active has-sub'><a href='#'><span>Cadastro</span></a>
+                    <ul>
+                        <li class='has-sub'><a href="/sceweb/limited/arealist.jsf"><span>Área</span></a></li>                       
+                        <li class='has-sub'><a href="/sceweb/limited/districtlist.jsf"><span>Bairro</span></a></li>
+                        <li class='has-sub'><a href="/sceweb/limited/cyclelist.jsf"><span>Ciclo</span></a></li>
+                        <li class='has-sub'><a href="/sceweb/limited/employeelist.jsf"><span>Funcionário</span></a></li>
+                        <li class='has-sub'><a href="/sceweb/limited/teamlist.jsf"><span>Equipe</span></a></li>
+                        <li class='has-sub'><a href="/sceweb/limited/streetlist.jsf"><span>Ruas</span></a></li>
+                    </ul>
+                </li>
+                <li class='active has-sub'><a href='#'><span>Consulta</span></a>
+                    <ul>
+                        <li class='has-sub'><a href="/sceweb/limited/samplelist.jsf"><span>Amostras</span></a></li>                       
+                        <li class='has-sub'><a href="/sceweb/limited/visitlist.jsf"><span>Visitas</span></a></li>
+                    </ul>
+                </li>
+                <li class='active has-sub'><a href='#'><span>Mapas</span></a>
+                    <ul>
+                        <li class='has-sub'><a href="/sceweb/limited/mapagente.jsf"><span>Agentes</span></a></li>                       
+                        <li class='has-sub'><a href="/sceweb/limited/map.jsf"><span>Visitas</span></a></li>
+                    </ul>
+                </li>                            
 
-                    </p:submenu>
-                    <p:submenu label="Outros" icon="ui-icon-document">
+            </ul>
+        </div>
 
-                        <p:menuitem value="Mapa" url="/limited/map.jsf" />
-
-                    </p:submenu>
-                </sec:ifAnyGranted>
-                <sec:ifAnyGranted roles="ROLE_ADMIN"> 
-                    <p:menuitem value="Área Administrativa" url="/admin/userlist.jsf" />
-                </sec:ifAnyGranted>
-                <p:menuitem value="Sair" url="document.location='#{request.contextPath}/j_spring_security_logout"/>
-            </p:menubar>
-
-        </h:form>
-
-    </ui:composition>
-</html>
-
-
+    </body>
+</html>                                		

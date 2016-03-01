@@ -5,23 +5,40 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-
+    <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
 
 
     <ui:composition template="/template/layout.xhtml">
 
         <ui:define name="title">
-            Mapa
+            Mapa de Amostras
         </ui:define>
 
 
 
         <ui:define name="body">
 
-            <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+            <h:form id="map">
+                <h:panelGrid columns="3">
+                    <p:outputLabel for="console" value="Ciclo: " />
+                    <p:selectOneMenu id="console" value="#{bmap.cycle}" style="width:300px" required="true"
+                                     requiredMessage="Informe o ciclo!" >
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bmap.cycleSelect}"/>					 			
+                    </p:selectOneMenu>
 
+                    <h:commandLink action="#{bmap.addMark}" >
+                        <h:graphicImage library="pictures" name="pesquisapeq.png"
+                                        style="border:0" title="Pesquisar Ciclo" />
+                    </h:commandLink>
+                </h:panelGrid>               
+                
+                <p:gmap center="#{bmap.latlong}" zoom="14" type="ROADMAP" style="width:100%;height:400px" 
+                        model="#{bmap.emptyModel}">
+                    
 
-
+                </p:gmap>
+            </h:form>
 
         </ui:define>
     </ui:composition>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<!--    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Mapa Visitas dos Agentes
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="mapagente">
+                <h:panelGrid columns="5">
+                    <p:outputLabel for="console" value="Ciclo: " />
+                    <p:selectOneMenu id="console" value="#{bmapagente.cycle}" style="width:300px" required="true"
+                                     requiredMessage="Informe o ciclo!" >
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bmapagente.cycleSelect}"/>					 			
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="agente" value="Agente " />
+                    <p:selectOneMenu id="agente" value="#{bmapagente.agente}" style="width:250px" required="true"
+                                     requiredMessage="Informe o agente!" >
+                        <f:selectItem itemLabel=" " itemValue="" />
+                        <f:selectItems  value="#{bmapagente.agenteSelect}"/>					 			
+                    </p:selectOneMenu>
+
+                    <h:commandLink action="#{bmapagente.addMark}" >
+                        <h:graphicImage library="pictures" name="pesquisapeq.png"
+                                        style="border:0" title="Pesquisar Ciclo" />
+                    </h:commandLink>
+                </h:panelGrid> 
+
+                <p:gmap center="#{bmapagente.latlong}" zoom="14" type="ROADMAP" style="width:100%;height:400px" 
+                        model="#{bmapagente.emptyModel}">
+
+                </p:gmap>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

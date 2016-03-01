@@ -8,10 +8,12 @@ package br.sce.bean;
 import br.sce.area.Area;
 import br.sce.area.AreaDAO;
 import br.sce.util.UsuarioAtivo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.swing.JOptionPane;
 
@@ -27,6 +29,32 @@ public class AreaBean {
     private List<Area> list;
     private AreaDAO dArea = new AreaDAO();
     private FacesContext context = FacesContext.getCurrentInstance();
+    ;
+    private String descricaoPesquisa;
+
+    public AreaDAO getdArea() {
+        return dArea;
+    }
+
+    public void setdArea(AreaDAO dArea) {
+        this.dArea = dArea;
+    }
+
+    public FacesContext getContext() {
+        return context;
+    }
+
+    public void setContext(FacesContext context) {
+        this.context = context;
+    }
+
+    public String getDescricaoPesquisa() {
+        return descricaoPesquisa;
+    }
+
+    public void setDescricaoPesquisa(String descricaoPesquisa) {
+        this.descricaoPesquisa = descricaoPesquisa;
+    }
 
     public Area getArea() {
         return area;
@@ -37,19 +65,18 @@ public class AreaBean {
     }
 
     public String save() {
+        if (area.getDescription().equals("")) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
         area.setDescription(area.getDescription().toUpperCase());
-        area.setCity(UsuarioAtivo.getUser().getCity());        
+        area.setCity(UsuarioAtivo.getUser().getCity());
         if (area.getId() == 0) {
             dArea.add(area);
-            context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
-                    + area.getDescription(), ""));
-            
-            
+
         } else {
             dArea.update(area);
-            context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
-                    + area.getDescription(), ""));
-            
+
         }
 
         return "/limited/arealist.jsf";
@@ -61,7 +88,13 @@ public class AreaBean {
     }
 
     public List<Area> getList() {
-        return dArea.list();
+        List<Area> lista;
+        if (descricaoPesquisa==null) {
+            lista = dArea.list();
+        } else {
+            lista = dArea.pesquisarArea("description", descricaoPesquisa);
+        }
+        return lista;
     }
 
     public String edit() {
@@ -69,9 +102,6 @@ public class AreaBean {
     }
 
     public String remove() {
-        context.addMessage(null, new FacesMessage("Sucesso ao Excluir: "
-                + area.getDescription(), ""));
-
         dArea.remove(this.area);
         this.list = dArea.list();
         return null;

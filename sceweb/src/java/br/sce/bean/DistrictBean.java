@@ -45,6 +45,10 @@ public class DistrictBean {
     }
 
     public String save() {
+        if(district.getArea()==null || district.getDescription().equals("") || district.getZone()=='\0'){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
         district.setDescription(district.getDescription().toUpperCase());
         district.setCity(UsuarioAtivo.getUser().getCity());
         if(district.getDistrictId()==0){

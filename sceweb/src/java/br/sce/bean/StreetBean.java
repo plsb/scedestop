@@ -42,7 +42,12 @@ public class StreetBean {
     
 
         
-    public String save() {     
+    public String save() { 
+        if(street.getDescription()==null || street.getDistrict()==null || street.getIdQuarter()==0){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
+        
         street.setCity(UsuarioAtivo.getUser().getCity());
         street.setDescription(street.getDescription().toUpperCase());
         if(street.getIdQuarter()==0){

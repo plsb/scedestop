@@ -26,7 +26,7 @@ public class Cycle implements Serializable{
     
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     
     @Column(length = 150, nullable = false)
     private String description;
@@ -52,11 +52,11 @@ public class Cycle implements Serializable{
     
     
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

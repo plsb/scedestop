@@ -17,18 +17,30 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import sce.br.dao.Database;
+import sce.br.model.InsereVisita;
 import sce.br.model.Mensagem;
 import sce.br.model.Visit;
 import sce.br.util.Ativo;
+import sce.br.util.GPSTracker;
 
 
 public class ActVisitIni extends Activity implements View.OnClickListener {
+
+    private static int operacao=0;
+
+    public static void recuperarImovel(Context ctx,Visit visit){
+        ActVisitIni.visit = visit;
+        visit.setTipoVisita("RECUPERADA");
+        Intent i = new Intent(ctx, ActVisitIni.class);
+        ctx.startActivity(i);
+    }
 
     private static int idrua;
     private ArrayList<String> doenca = new ArrayList<String>();
@@ -36,7 +48,7 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
     private Button btContinuar, btClose;
     private EditText edtRua;
     private Database db = new Database(ActVisitIni.this);
-    Visit visit = new Visit();
+    private static Visit visit = new Visit();
 
     private EditText num, complem, responsavel;
     private RadioGroup tipoImovel, tipoVisita;
@@ -46,6 +58,8 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
     private Spinner SpcodDoenca, SpAtividade;
 
     public static void show(Context ctx, int rua) {
+        visit = new Visit();
+        visit.setCodigo("");
         ActVisitIni.idrua = rua;
         Intent i = new Intent(ctx, ActVisitIni.class);
         ctx.startActivity(i);
@@ -74,6 +88,39 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
             rbTB = (RadioButton) findViewById(R.id.RbTerrenoBaldio);
             rbPE = (RadioButton) findViewById(R.id.RbPontoEstrategico);
             rbO = (RadioButton) findViewById(R.id.RbOutros);
+
+            rbRecuperada.setEnabled(false);
+
+            if(!visit.getCodigo().equals("")){
+                edtRua.setText(visit.getNomerua());
+                rbRecuperada.setChecked(true);
+                rbNormal.setEnabled(false);
+                rbFechada.setEnabled(false);
+                rbRecusada.setEnabled(false);
+                switch (visit.getTipoImovel()){
+                    case "R":rbResidencial.setChecked(true);
+                        break;
+                    case "C":rbComercial.setChecked(true);
+                        break;
+                    case "TB":rbTB.setChecked(true);
+                        break;
+                    case "PE":rbPE.setChecked(true);
+                        break;
+                    case "O":rbO.setChecked(true);
+                        break;
+                }
+                rbResidencial.setEnabled(false);
+                rbComercial.setEnabled(false);
+                rbTB.setEnabled(false);
+                rbPE.setEnabled(false);
+                rbO.setEnabled(false);
+                num.setText(visit.getNumeroResidencia());
+                num.setEnabled(false);
+                complem.setText(visit.getComplemento());
+                complem.setEnabled(false);
+                responsavel.setText(visit.getResponsavel());
+                idrua = visit.getIdrua();
+            }
 
         } catch (Exception e) {
             Mensagem.exibeMessagem(ActVisitIni.this, "Erro", "Ocorreu erro ao tentar inicializar os objetos.");
@@ -117,7 +164,22 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
                 Mensagem.exibeMessagem(ActVisitIni.this, "Atenção", "Selecione o tipo de visita.");
             } else {
 
+                GPSTracker gps = gps = new GPSTracker(ActVisitIni.this);
+                if(gps.canGetLocation()){
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+                    visit.setLatitude(latitude);
+                    visit.setLongitude(longitude);
+                }else{
+                    // não pôde pegar a localização
+                    // GPS ou a Rede não está habilitada
+                    // Pergunta ao usuário para habilitar GPS/Rede em configurações
+                    Toast.makeText(ActVisitIni.this,"Ative o GPS!",Toast.LENGTH_LONG).show();
+                    gps.showSettingsAlert();
+                }
+
                 visit.setIdrua(idrua);
+                visit.setNomerua(edtRua.getText().toString());
                 visit.setComplemento(complem.getText().toString());
                 visit.setNumeroResidencia(num.getText().toString());
                 visit.setIdciclo(Ativo.getCycle().getId());
@@ -129,15 +191,34 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
                 SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
                 visit.setHora(hora.format(new Date(System.currentTimeMillis())));
                 SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-                visit.setData(data.format(new Date(System.currentTimeMillis())));
-                String codigo = String.valueOf(visit.getIdagente())+visit.getHora().replaceAll(":","")
-                        +visit.getData().replace("/","");
-                visit.setCodigo(codigo);
+                if(visit.getTipoVisita().equals("RECUPERADA")){
+                    ContentValues cv = new ContentValues();
+                    cv.put("FOIIMPORTADO",0);
+                    db.update("visit",cv,"_ID="+visit.getCodigo());
+                    visit.setDataRecuperada(data.format(new Date(System.currentTimeMillis())));
+                    operacao=1;
+                } else {
+                    operacao=0;
+                    visit.setData(data.format(new Date(System.currentTimeMillis())));
+                    String codigo = String.valueOf(Ativo.getCity().getId())+
+                            String.valueOf(Ativo.getCycle().getId())+
+                            String.valueOf(visit.getIdagente())+visit.getHora().replaceAll(":","")
+                            +visit.getData().replace("/","");
+                    visit.setCodigo(codigo);
+                    visit.setDataRecuperada("");
+                }
+
+
+                if(visit.getData()==null){
+                    visit.setData(visit.getDataRecuperada());
+                }
 
                 if(visit.getTipoVisita().equals("FECHADA") || visit.getTipoVisita().equals("RECUSADA")){
+                    visit.setTipoLarvicida("");
                     PreparaInsercao();
+                    ActMainActivity.mostraContagemAImportar(ActVisitIni.this);
                 } else {
-                    ActVisitLast.show(visit, ActVisitIni.this);
+                    ActVisitLast.show(visit, ActVisitIni.this, operacao);
                 }
             }
 
@@ -302,64 +383,19 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
     }
 
     public void PreparaInsercao() {
-        TotalInspecionado();
         db.open();
-        try {
-            ContentValues cvVisit = new ContentValues();
-            cvVisit.put("VIS_IDRUA", visit.getIdrua());
-            cvVisit.put("VIS_NUMERO", Integer.parseInt(visit.getNumeroResidencia()));
-            cvVisit.put("VIS_COMPLEMENTO", visit.getComplemento());
-            cvVisit.put("VIS_TIPO_IMOVEL", visit.getTipoImovel());
-            cvVisit.put("VIS_HORA", visit.getHora());
-            cvVisit.put("VIS_PNEU", visit.getTpneu());
-            cvVisit.put("VIS_TANQUE", visit.getTtanque());
-            cvVisit.put("VIS_TAMBOR", visit.getTtambor());
-            cvVisit.put("VIS_BARRIL", visit.getTbarril());
-            cvVisit.put("VIS_TINA", visit.getTtina());
-            cvVisit.put("VIS_POTE", visit.getTpote());
-            cvVisit.put("VIS_FILTRO", visit.getTfiltro());
-            cvVisit.put("VIS_QUARTINHA", visit.getTquartinha());
-            cvVisit.put("VIS_VASO", visit.getTvaso());
-            cvVisit.put("VIS_MAT_CONSTRUCAO", visit.getTmatConst());
-            cvVisit.put("VIS_PECA_CARRO", visit.getTpecaCarro());
-            cvVisit.put("VIS_GARRAFA", visit.getTgarrafa());
-            cvVisit.put("VIS_LATA", visit.getTlata());
-            cvVisit.put("VIS_DEP_PLASTICO", visit.getTdepPlast());
-            cvVisit.put("VIS_POCO", visit.getTpoco());
-            cvVisit.put("VIS_CISTERNA", visit.getTcisterna());
-            cvVisit.put("VIS_CACIMBA", visit.getTcacimba());
-            cvVisit.put("VIS_CX_DAGUA", visit.getTcxDagua());
-            cvVisit.put("VIS_REC_NATURAL", visit.getTrecNatural());
-            cvVisit.put("VIS_OUTROS", visit.getToutros());
-            cvVisit.put("VIS_ARMADILHA", visit.getTarmadilha());
-            cvVisit.put("VIS_POOL", visit.getTPOOL());
-            cvVisit.put("VIS_TIPO_ATIVIDADE", visit.getTipoAtividade());
-            cvVisit.put("VIS_COD_DOENCA", visit.getDoenca());
-            cvVisit.put("VIS_RESPONSAVEL", visit.getResponsavel());
-            cvVisit.put("VIS_LARVICIDAGT", visit.getLarvicidaGT());
-            cvVisit.put("VIS_LARVICIDAML", visit.getLarvicidaML());
-            cvVisit.put("VIS_DATA", visit.getData());
-            cvVisit.put("VIS_AGENTE", visit.getIdagente());
-            cvVisit.put("VIS_DEP_TRATADOS_FOCAL", visit.getDepTratadosFocal());
-            cvVisit.put("VIS_DEP_TRATADOS_PERIFOCAL", visit.getDepTratadosPerifocal());
-            cvVisit.put("VIS_TIPO_LARVICIDA", visit.getTipoLarvicida());
-            cvVisit.put("VIS_RALO", visit.getTRalo());
-            cvVisit.put("VIS_PISCINA", visit.getTPiscina());
-            cvVisit.put("VIS_OBS", visit.getEdtObs());
-            cvVisit.put("VIS_DEP_ELIMINADOS", visit.getDepEliminados());
-            cvVisit.put("CICLO", visit.getIdciclo());
-            cvVisit.put("FOIIMPORTADO", 0);
-
-            db.insert("visit", cvVisit);
-            Mensagem.exibeMessagem(ActVisitIni.this, "endemics", "Fechado/Recusado. Visita salva com sucesso!");
-        } catch (Exception e){
-            Mensagem.exibeMessagem(ActVisitIni.this,"endemics","Não foi possível salvar a visita!");
+        TotalInspecionado();
+        InsereVisita ins = new InsereVisita();
+        if(ins.insereVisita(visit, ActVisitIni.this,operacao)!=-1){
+            Toast.makeText(ActVisitIni.this, "(FEHCADA/RECUSADA) Visita Inserida Com Sucesso!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ActVisitIni.this, "Não foi possível salvar a visita!", Toast.LENGTH_SHORT).show();
         }
 
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(ActVisitIni.this);
         dialog.setMessage("Deseja Realizar outra visita para a mesma Rua? ");
-        dialog.setNegativeButton("Sim", new
+        dialog.setPositiveButton("Sim", new
                 DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface di, int arg) {
@@ -368,7 +404,7 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
                     }
                 });
 
-        dialog.setPositiveButton("Não", new
+        dialog.setNegativeButton("Não", new
                 DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface di, int arg) {
@@ -381,5 +417,11 @@ public class ActVisitIni extends Activity implements View.OnClickListener {
         dialog.setTitle("endemics");
         dialog.show();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
 
 }

@@ -46,8 +46,8 @@ public abstract class GenericDAO<T> {
                     + ". Erro: " + e.getMessage());
             return false;
         } finally {
+            
             getSessao().close();
-
         }
         return true;
     }

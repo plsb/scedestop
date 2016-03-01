@@ -32,7 +32,7 @@ public class CycleBean {
     private CycleDAO dCycle = new CycleDAO();
     private FacesContext context = FacesContext.getCurrentInstance();
     private List<Cycle> list;
-    
+
     public List<Cycle> getList() {
         return dCycle.list();
     }
@@ -45,22 +45,24 @@ public class CycleBean {
         this.cycle = cycle;
     }
 
-    
-
     public String save() {
+        if (cycle.getDescription()==null || cycle.getEndDate()==null || cycle.getStartDate()==null) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
+
         cycle.setDescription(cycle.getDescription().toUpperCase());
         cycle.setCity(UsuarioAtivo.getUser().getCity());
         if (cycle.getId() == 0) {
-             dCycle.add(cycle);
+            dCycle.add(cycle);
             context.addMessage(null, new FacesMessage("Sucesso a Adicionar: "
                     + cycle.getDescription(), ""));
 
-           
         } else {
             dCycle.update(cycle);
             context.addMessage(null, new FacesMessage("Sucesso a Atualizar: "
                     + cycle.getDescription(), ""));
-            
+
         }
 
         return "/limited/cyclelist.jsf";

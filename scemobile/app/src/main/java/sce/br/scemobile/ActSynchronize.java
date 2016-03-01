@@ -1,33 +1,10 @@
 package sce.br.scemobile;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-
-import java.security.spec.RSAOtherPrimeInfo;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Objects;
-
-import sce.br.dao.Database;
-import sce.br.model.City;
-import sce.br.model.Employee;
 import sce.br.model.Mensagem;
 import sce.br.util.Synchronize;
 
@@ -57,4 +34,9 @@ public class ActSynchronize extends Activity implements View.OnClickListener{
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }

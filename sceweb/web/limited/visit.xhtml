@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Visualizar Visita
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="register">
+
+                <h:inputHidden value="#{bvisit.visit.id}"/>
+
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:tabView>
+                    <p:tab title="Inicial">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:outputLabel value="Matrícula / Agente: " />
+                            <p:outputLabel value="#{bvisit.visit.agente.registration} / #{bvisit.visit.agente.name}" />
+
+                            <p:outputLabel value="Data / Hora Visita: " />
+                            <p:outputLabel value="#{bvisit.visit.data} / #{bvisit.visit.hora}" />
+
+                            <p:outputLabel value="Data Recuperada: " />
+                            <p:outputLabel value="#{bvisit.visit.dataRecuperada}" />
+
+                            <p:outputLabel value="Tipo Visita:"  />
+                            <p:outputLabel value="#{bvisit.visit.tipoVisita}" />
+
+                            <p:outputLabel value="Tipo Imóvel:"/>
+                            <p:outputLabel value="#{bvisit.tipoImovel}"/>
+
+                            <p:outputLabel value="Tipo Atividade:" />
+                            <p:outputLabel value="#{bvisit.tipoAtividade}" />
+
+                            <p:outputLabel value="Localização:" />
+                            <p:outputLabel value="#{bvisit.visit.street.description}, #{bvisit.visit.numero} - 
+                                           #{bvisit.visit.complemento} (#{bvisit.visit.street.city.description}-
+                                           #{bvisit.visit.street.city.state})" />
+
+                            <p:outputLabel value="Cód. Doença: " />
+                            <p:outputLabel value="#{bvisit.visit.codDoenca}" />
+
+                            <p:outputLabel value="Responsável: " />
+                            <p:outputLabel value="#{bvisit.visit.responsavel}" />
+
+
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Quantidades">
+                        <h:panelGrid columns="12" cellpadding="10">
+                            <p:outputLabel value="Pneu: " />
+                            <p:outputLabel value="#{bvisit.visit.pneu}" />
+
+                            <p:outputLabel value="Taque: " />
+                            <p:outputLabel value="#{bvisit.visit.tanque}" />
+
+                            <p:outputLabel value="Tambor: " />
+                            <p:outputLabel value="#{bvisit.visit.tambor}" />
+
+                            <p:outputLabel value="Barril: " />
+                            <p:outputLabel value="#{bvisit.visit.barril}" />
+
+                            <p:outputLabel value="Tina: " />
+                            <p:outputLabel value="#{bvisit.visit.tina}" />
+
+                            <p:outputLabel value="Pote: " />
+                            <p:outputLabel value="#{bvisit.visit.pote}" />
+
+                            <p:outputLabel value="Filtro: " />
+                            <p:outputLabel value="#{bvisit.visit.filtro}" />
+
+                            <p:outputLabel value="Quartina: " />
+                            <p:outputLabel value="#{bvisit.visit.quartinha}" />
+
+                            <p:outputLabel value="Vasos: " />
+                            <p:outputLabel value="#{bvisit.visit.vaso}" />
+
+                            <p:outputLabel value="Mat. Cons.: " />
+                            <p:outputLabel value="#{bvisit.visit.matConstrucao}" />
+
+                            <p:outputLabel value="Peça Carro: " />
+                            <p:outputLabel value="#{bvisit.visit.pecaCarro}" />
+
+                            <p:outputLabel value="Garrafa: " />
+                            <p:outputLabel value="#{bvisit.visit.garrafa}" />
+
+                            <p:outputLabel value="Lata: " />
+                            <p:outputLabel value="#{bvisit.visit.lata}" />
+
+                            <p:outputLabel value="Dep. Plást.: " />
+                            <p:outputLabel value="#{bvisit.visit.depPlastico}" />
+
+                            <p:outputLabel value="Poço: " />
+                            <p:outputLabel value="#{bvisit.visit.poco}" />
+
+                            <p:outputLabel value="Cisterna: " />
+                            <p:outputLabel value="#{bvisit.visit.cisterna}" />
+
+                            <p:outputLabel value="Cacimba: " />
+                            <p:outputLabel value="#{bvisit.visit.cacimba}" />
+
+                            <p:outputLabel value="Cx. Dágua.: " />
+                            <p:outputLabel value="#{bvisit.visit.cxDagua}" />
+
+                            <p:outputLabel value="Rec. Natural: " />
+                            <p:outputLabel value="#{bvisit.visit.recNatural}" />
+
+                            <p:outputLabel value="Armadilha: " />
+                            <p:outputLabel value="#{bvisit.visit.armadilha}" />
+
+                            <p:outputLabel value="POOL: " />
+                            <p:outputLabel value="#{bvisit.visit.pool}" />
+
+                            <p:outputLabel value="Ralo: " />
+                            <p:outputLabel value="#{bvisit.visit.ralo}" />
+
+                            <p:outputLabel value="Piscina: " />
+                            <p:outputLabel value="#{bvisit.visit.piscina}" />
+
+                            <p:outputLabel value="Outros: " />
+                            <p:outputLabel value="#{bvisit.visit.outros}" />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="4" cellpadding="10">
+                            <p:outputLabel value="Dep. Eliminados: " />
+                            <p:outputLabel value="#{bvisit.visit.depEliminados}" />
+
+                            <p:outputLabel value="Dep. Trat. Focal: " />
+                            <p:outputLabel value="#{bvisit.visit.depTratadoFocal}" />
+
+                            <p:outputLabel value="Dep. Trat. Perifocal: " />
+                            <p:outputLabel value="#{bvisit.visit.detpTratadoPerifocal}" />
+
+                            <p:outputLabel value="Qtde. Larvicida(ML): " />
+                            <p:outputLabel value="#{bvisit.visit.larvicidaMl}" />
+
+                            <p:outputLabel value="Qtde. Larvicida(GT): " />
+                            <p:outputLabel value="#{bvisit.visit.larvicidaGt}" />
+
+                            <p:outputLabel value="Tipo Larvicida: " />
+                            <p:outputLabel value="#{bvisit.visit.tipoLarvicida}" />
+
+                            <p:outputLabel value="Observações: " />
+                            <p:outputLabel value="#{bvisit.visit.obs}" />
+
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Amostras">
+                        <h:panelGrid columns="6">
+                            <h:graphicImage library="pictures"
+                                            name="circulo_1.png" style="border:0" />
+                            <p:outputLabel value="Amostra confirmada"/>
+
+                            <h:graphicImage library="pictures"
+                                            name="circulo_0.png" style="border:0" />
+                            <p:outputLabel value="Amostra não confirmada"/>
+
+                            <h:graphicImage library="pictures"
+                                            name="circulo_2.png" style="border:0" />
+                            <p:outputLabel value="Amostra a ser analisada"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <p:dataTable id="tbl" value="#{bvisit.amostras}" var="amostra"
+                                         paginator="true" rows="15">
+
+                                <p:column>
+                                    <h:graphicImage library="pictures"
+                                                    name="circulo_#{amostra.confirmada}.png" style="border:0" />
+                                </p:column>
+
+
+                                <p:column id="num"   resizable="true"
+                                          headerText="Num Amostra" filterBy="#{amostra.numAmostra}">
+                                    <f:facet name="header">Num. Amostra</f:facet>
+                                    <h:outputText
+                                        value="#{amostra.numAmostra}" />
+                                </p:column>
+
+                                <p:column id="dep"   resizable="true"
+                                          headerText="Depósito" filterBy="#{amostra.deposito}">
+                                    <f:facet name="header">Depósito</f:facet>
+                                    <h:outputText
+                                        value="#{amostra.deposito}" />
+                                </p:column>
+
+                                <p:column id="lav"   resizable="true"
+                                          headerText="Num. Lavas" filterBy="#{amostra.numLavas}">
+                                    <f:facet name="header">Num. Lavas</f:facet>
+                                    <h:outputText
+                                        value="#{amostra.numLavas}" />
+                                </p:column>
+
+
+
+                            </p:dataTable>
+
+
+
+                        </h:panelGrid>
+                    </p:tab>
+                </p:tabView>
+
+
+                <p:commandButton action="/limited/visitlist.jsf" value="Voltar" ajax="false"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

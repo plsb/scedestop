@@ -44,6 +44,13 @@ public class TeamBean {
     }
 
     public String save() {
+        if (team.getMaster()==null || team.getSupervised()==null) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Preencha os campos Obrigatórios (*)", ""));
+            return "";
+        }
+
+        
+        
         team.setCity(UsuarioAtivo.getUser().getCity());
 
         if (team.getId() == 0) {

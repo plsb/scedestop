@@ -40,15 +40,15 @@
                     </p:column>
 
 
-                    <p:column id="city" headerText="Cidade">
+                    <p:column id="city" headerText="Cidade" style="width:200px">
                         <f:facet name="header">Cidade</f:facet>
                         <h:outputText
                             value="#{team.city.description} - #{team.city.state}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:50px">
 
-                        <h:commandLink action="#{bteam.edit}">
+                        <h:commandLink action="#{bteam.edit}" >
                             <h:graphicImage library="pictures" name="edit.png"
                                             style="border:0" title="Editar Time" />
                             <f:setPropertyActionListener target="#{bteam.team}"
@@ -57,7 +57,7 @@
                         </h:commandLink>
 
                     </p:column>
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bteam.remove}"
                                        onclick="if (!confirm('Confirma a exclusão do Time ?'))

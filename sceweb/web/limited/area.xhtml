@@ -11,30 +11,40 @@
     <ui:composition template="/template/layout.xhtml">
 
         <ui:define name="title">
-            Inserção/Edição de Áreas
+            Área
         </ui:define>
 
 
 
         <ui:define name="body">
 
-            <h:form id="register">
-
+            <h:form id="register"  class="navbar-form navbar-left" >
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />                
                 <h:inputHidden value="#{barea.area.id}"/>
 
-                <h:panelGrid columns="1">
-                    <p:outputLabel value="Descrição da Área:" for="description" />
-                    <p:inputText id="description" label="Descrição" size="100"
-                                 maxlength="50" required="true" value="#{barea.area.description}"
-                                 requiredMessage="Informe a Descrição." style="text-transform:uppercase">
-                    </p:inputText>				
-                                        
-                </h:panelGrid>
-                <br />
-                <p:commandButton action="#{barea.save}" value="Salvar" ajax="false"/>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p:panel id="basic" header="Cadastro/Edição de Área" style="margin-bottom:20px">
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Descrição da Área: *" for="description"/>
+                                <p:inputText id="description" label="Descrição" size="100"
+                                             maxlength="50" required="false" value="#{barea.area.description}"
+                                             requiredMessage="Informe a Descrição." style="text-transform:uppercase"
+                                             class="form-control">
+                                </p:inputText>
 
+
+                            </h:panelGrid>
+                            <br />
+
+                            <p:commandButton class="btn btn-large btn-success" id="Linha1" action="#{barea.save}" value="Salvar"/>
+                            <p:commandButton class="btn btn-large btn-danger" value="Cancelar" action="/limited/arealist.jsf"/>                
+                        </p:panel>
+                    </div>
+                </div>
             </h:form>
-            
+
+
         </ui:define>
     </ui:composition>
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <ui:composition template="/template/layout.xhtml">
+
+        <ui:define name="title">
+            Inserção/Edição de Amostra
+        </ui:define>
+
+
+
+        <ui:define name="body">
+
+            <h:form id="register">
+                <p:panel id="basic" header="Amostra"  style="margin-bottom:20px">
+
+                    <h:inputHidden value="#{bsample.sample.id}"/>
+
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Data: "/>
+                        <p:outputLabel value="#{bsample.sample.visit.data}"/>
+
+                        <p:outputLabel value="Localidade: "/>
+                        <p:outputLabel value="#{bsample.sample.visit.street.description}, #{bsample.sample.visit.numero} - 
+                                       #{bsample.sample.visit.complemento} (#{bsample.sample.visit.city.description}-
+                                       #{bsample.sample.visit.city.state})"/>
+
+                        <p:outputLabel value="Agente: "/>
+                        <p:outputLabel value="#{bsample.sample.visit.agente.name}"/>
+
+                        <p:outputLabel value="Num. Amostra: "/>
+                        <p:outputLabel value="#{bsample.sample.numAmostra}"/>
+
+                        <p:outputLabel value="Depósito: "/>
+                        <p:outputLabel value="#{bsample.sample.deposito}"/>
+
+                        <p:outputLabel value="Qtd. Lavas: "/>
+                        <p:outputLabel value="#{bsample.sample.numLavas}"/>  
+
+                        <h:outputText value="Situação: " />
+                        <p:selectOneMenu id="console" value="#{bsample.sample.confirmada}" style="width:125px" required="true"
+                                         requiredMessage="Informe a Situação." >
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItem itemLabel="Confirmada" itemValue="1" />
+                            <f:selectItem itemLabel="Não Confirmada" itemValue="0" />
+
+                        </p:selectOneMenu>
+
+
+                    </h:panelGrid>
+                </p:panel>
+                <br />
+                <p:commandButton action="#{bsample.save}" value="Salvar" ajax="false"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

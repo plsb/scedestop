@@ -23,37 +23,38 @@
                 </h:commandLink>
 
                 <p:dataTable id="tbl" value="#{bdistrict.list}" var="district"
-                             paginator="true" rows="10">
+                             scrollHeight="200"
+                             rows="10"
+                             paginator="true"
+                             >
 
+                    <f:facet name="header">
+                        Lista de Bairros
+                    </f:facet>
                     <p:column  
                         headerText="Código"  
-                        filterMatchMode="contains">
-                        <f:facet name="header">Código</f:facet>
+                        filterMatchMode="contains" style="width:100px">
                         <h:outputText value="#{district.districtId}" />
-                    </p:column>
+                    </p:column >
                     <p:column id="description"
                               headerText="Descrição" filterBy="#{district.description}">
-                        <f:facet name="header">Descrição</f:facet>
                         <h:outputText
                             value="#{district.description}" />
                     </p:column>
-                    <p:column id="area" headerText="Área" filterBy="#{district.area.description}">
-                              <f:facet name="header">Area</f:facet>
+                    <p:column id="area" headerText="Área" style="width:180px" filterBy="#{district.area.description}">
                         <h:outputText
                             value="#{district.area.description}" />
                     </p:column>
-                    <p:column id="zone" headerText="Zona" filterBy="#{district.zone}">
-                              <f:facet name="header">Zona</f:facet>
+                    <p:column id="zone" headerText="Zona" style="width:50px">
                         <h:outputText
                             value="#{district.zone}" />
                     </p:column>
-                    <p:column id="city" headerText="Cidade">
-                        <f:facet name="header">Cidade</f:facet>
+                    <p:column id="city" headerText="Cidade" style="width:100px">
                         <h:outputText
                             value="#{district.city.description} - #{district.city.state}" />
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bdistrict.edit}">
                             <h:graphicImage library="pictures" name="edit.png"
@@ -64,7 +65,7 @@
                         </h:commandLink>
 
                     </p:column>
-                    <p:column>
+                    <p:column style="width:50px">
 
                         <h:commandLink action="#{bdistrict.remove}"
                                        onclick="if (!confirm('Confirma a exclusão do Bairro ?'))
