@@ -31,6 +31,8 @@ public class Synchronize {
 
     private static ProgressDialog dialog;
 
+    private static final String url = "http://192.168.1.5:8080/sceweb/webservice/sceWS?wsdl";//"http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+
     public static void synchronize(final String codibge, final Context act){
         dialog = ProgressDialog.show(act, "endemics", "Aguarde Sincronizando...", true);
         //sincroniza a cidade
@@ -44,7 +46,7 @@ public class Synchronize {
                 soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                 envelope.setOutputSoapObject(soap);
 
-                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+
                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                 Object msg = null;
                 try {
@@ -128,7 +130,7 @@ public class Synchronize {
                 soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                 envelope.setOutputSoapObject(soap);
 
-                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+//                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                 Object msg = null;
                 try {
@@ -191,7 +193,7 @@ public class Synchronize {
                 soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                 envelope.setOutputSoapObject(soap);
 
-                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+  //              String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                 Object msg = null;
                 try {
@@ -259,7 +261,7 @@ public class Synchronize {
                 soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                 envelope.setOutputSoapObject(soap);
 
-                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+    //            String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                 Object msg = null;
                 try {
@@ -386,7 +388,7 @@ public class Synchronize {
                                 soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                                 envelope.setOutputSoapObject(soap);
 
-                                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+                         //       String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                                 Object msg = null;
                                 try {
@@ -478,7 +480,7 @@ public class Synchronize {
                             soap.addProperty("codVerificacao", "@endemics04_p_09M08k");
                             envelope.setOutputSoapObject(soap);
 
-                                String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+    //                            String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                                 HttpTransportSE httpTransport = new HttpTransportSE(url);
                                 Object msg = null;
                                 try {
@@ -549,7 +551,7 @@ public class Synchronize {
                     db.open();
                     db.execSql("delete from visit");
 
-                    String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
+      //              String url = "http://onenteamtecnologia.acessotemporario.net:80/sceweb/webservice/sceWS?wsdl";
                     HttpTransportSE httpTransport = new HttpTransportSE(url);
                     Object msg = null;
                     try {

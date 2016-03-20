@@ -93,7 +93,7 @@ public class VisitBean {
             case "R":
                 return "RESIDENCIAL";
             case "C":
-                return "COMÈRCIO";
+                return "COMÉRCIO";
             case "TB":
                 return "TERRENO BALDIO";
             case "PE":
