@@ -23,17 +23,8 @@
         <property name="hibernate.c3p0.max_statements">50</property>  
         <property name="hibernate.c3p0.min_size">5</property>   
         <!-- fim configuration pool via c3p0-->          
-        <mapping class="br.sce.area.Area"/>
-        <mapping class="br.sce.city.City"/>
-        <mapping class="br.sce.cycle.Cycle"/>
-        <mapping class="br.sce.district.District"/>
-        <mapping class="br.sce.employee.Employee"/>
-        <mapping class="br.sce.street.Street"/>
-        <mapping class="br.sce.team.Team"/>
-        <mapping class="br.sce.user.User"/>
-        <mapping class="br.sce.user.User"/>
-        <mapping class="br.sce.visit.Visit"/>
-        <mapping class="br.sce.sample.Sample"/>
+        <mapping package="br.endemics.model"/>
+        
         
     </session-factory>
 </hibernate-configuration>
